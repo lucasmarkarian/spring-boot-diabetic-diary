@@ -55,7 +55,8 @@ public class LoginController {
 	}
 
 	@PostMapping("/sign-up")
-	public String signUp(@Valid Usuario usuario, BindingResult result) {
+	public String signUp(@Valid Usuario usuario, BindingResult result,
+			RedirectAttributes flash) {
 
 		if (this.usuarioService.findByUsername(usuario.getUsername()) != null) {
 			System.out.println("EL NOMBRE DE USUARIO YA EXISTE");
@@ -69,7 +70,7 @@ public class LoginController {
 		}
 
 		this.usuarioService.save(usuario);
-
+		flash.addFlashAttribute("success", "Cuenta creada con exito!");
 		return "redirect:/login";
 	}
 

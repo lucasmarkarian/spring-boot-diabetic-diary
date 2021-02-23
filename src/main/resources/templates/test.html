@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/layout :: head"></head>
+<head th:replace="layout/layout2 :: head2"></head>
 <body>
 
-	<header th:replace="layout/layout :: header"></header>
+	<header th:replace="layout/layout2 :: header2"></header>
 
-	<div class="container py-4">
-
-		<div class="card border-primary">
-			<div class="card-header text-dark fs-5 fw-bold"
-				th:text="${'Del '} + ${desdeTitulo} + ${' al '} + ${hastaTitulo}"></div>
-			<div class="card-body">
-
-				<h4 class="card-title">
-					<a th:href="@{'/home'}">&laquo; Volver</a> <a
-						class="btn btn-danger btn-xs float-end mx-2"
-						th:href="@{'/test/' + ${desde} + '/' + ${hasta}(format=pdf)}"
-						target="_blank" rel="noopener noreferrer">PDF</a>
-				</h4>
-
+	<section class="banner-area">
+		<div class="container py-4">
+			<div class="card border-primary range-grid">
+				<div class="card-header text-dark fs-5 fw-bold"
+					th:text="${'Del '} + ${desdeTitulo} + ${' al '} + ${hastaTitulo}"></div>
+				<div class="card-body">
+					<h4 class="card-title">
+						<a th:href="@{'/home'}">&laquo; Volver</a> <a
+							class="btn btn-danger btn-xs float-end mx-2"
+							th:href="@{'/test/' + ${desde} + '/' + ${hasta}(format=pdf)}"
+							target="_blank" rel="noopener noreferrer">PDF</a>
+					</h4>
+				</div>
 			</div>
 		</div>
-	</div>
-
-	<footer th:replace="layout/layout :: footer"></footer>
+	</section>
+	
+	<footer th:replace="layout/layout2 :: footer2"></footer>
 
 </body>
 </html>

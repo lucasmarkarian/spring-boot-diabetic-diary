@@ -1,0 +1,469 @@
+@import
+	url('https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@100;200;400;500;600;700;800;900&display=swap')
+	;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html, body {
+	font-family: 'Saira Semi Condensed', sans-serif;
+}
+
+.header-container {
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: .8rem 20px;
+	background-color: hsla(216, 98%, 52%, 1);
+	flex-wrap: wrap;
+	position: relative;
+}
+
+.header-container h1 {
+	transition: all 0.3s linear;
+	margin: 0;
+	padding: 0;
+	font-size: 1.5rem;
+	font-weight: 500;
+	color: #fff;
+	letter-spacing: 1px;
+}
+
+.header-container .ul-links {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	display: flex;
+	text-align: center;
+	align-items: center;
+}
+
+.header-container .ul-links li {
+	margin: 0 20px;
+	max-height: 100%;
+	font-size: 1.3rem;
+	font-weight: bold;
+}
+
+.header-link, .nav-links .btn-group .btn {
+	text-decoration: none;
+	color: white;
+	text-shadow: 6px 4px 2px rgba(0, 0, 0, .5);
+	transition: all 0.3s linear;
+}
+
+.header-link:hover, .nav-links .btn-group .btn:hover {
+	position: relative;
+	bottom: .1rem;
+	right: .2rem;
+	color: hsla(199, 100%, 73%, 1);
+	text-shadow: 12px 8px 2px rgba(0, 0, 0, .5);
+	background-color: rgba(0, 0, 0, 0);
+	border-color: rgba(0, 0, 0, 0);
+}
+
+.header-link:hover {
+	border-bottom: 3px solid hsla(199, 100%, 73%, 1);
+}
+
+.nav-links {
+	display: flex;
+}
+
+.nav-links .btn-group .btn i {
+	font-size: x-large;
+}
+
+@media screen and (max-width: 594px) {
+	.header-container {
+		justify-content: space-around;
+	}
+	.header-container h1 {
+		font-size: calc(1.5rem + 2vw);
+	}
+	.header-container .ul-links li {
+		font-size: calc(.7rem + 2vw);
+	}
+}
+
+@media screen and (max-width: 312px) {
+	.header-container .ul-links {
+		flex-direction: column;
+		text-align: center;
+	}
+	.header-container .ul-links li {
+		font-size:
+	}
+}
+
+.banner-area {
+	padding: 5vw;
+	max-height: 1000rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background-image: url("../images/Clouds.jpg");
+	background-size: cover;
+	z-index: -100;
+	border-bottom: 2px solid rgba(0, 0, 0, .7);
+}
+
+footer {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	text-align: center;
+}
+
+footer p {
+	padding: 10px 0;
+	border-bottom: 1px solid rgba(0, 0, 0, .8);
+	border-right: 1px solid rgba(0, 0, 0, .8);
+	box-shadow: 4px 3px hsla(216, 98%, 52%, 1);
+	padding-right: 10px;
+}
+
+footer p:last-of-type {
+	margin-right: .5rem;
+}
+
+@media screen and (max-width: 1188px) {
+	footer {
+		justify-content: center;
+	}
+	footer p {
+		margin-bottom: 10px;
+	}
+}
+
+/* Calendar Styles */
+.calendar {
+	height: calc(14rem + 29vw);
+	background-color: rgba(184, 218, 255, 1);
+	box-shadow: 0 .5rem 3rem rgba(0, 0, 0, 1);
+	border-radius: 1.2rem 1.2rem 1rem 1rem;
+	top: 0;
+	left: 0;
+}
+
+.month {
+	border-radius: 1rem 1rem 0 0;
+	border-bottom: 2px solid #004085;
+	height: 25%;
+	background-color: rgba(115, 168, 225, 1);
+	display: grid;
+	grid-template-columns: 1fr 5fr 1fr;
+	justify-items: center;
+	text-align: center;
+	align-items: center;
+	text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, .5);
+}
+
+.month i {
+	cursor: pointer;
+	font-size: calc(.6rem + 3.7vw);
+	color: #004085;
+}
+
+.month i:hover {
+	font-size:
+}
+
+.month h1 {
+	color: #004085;
+	font-size: calc(.4rem + 3.7vw);
+	font-weight: 400;
+	text-transform: uppercase;
+}
+
+.month p {
+	color: #004085;
+	font-size: calc(.5rem + 2vw);
+	cursor: pointer;
+}
+
+.month p:hover {
+	color: rgba(184, 218, 255, 1);
+}
+
+.date {
+	height: 100%;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	align-items: center;
+}
+
+.weekdays {
+	height: 10%;
+	display: grid;
+	grid-template: repeat(1, 1fr)/repeat(7, 1fr);
+	justify-items: center;
+	align-items: center;
+	color: #004085;
+}
+
+.weekdays div {
+	font-size: calc(.2rem + 2.3vw);
+	font-weight: 400;
+	letter-spacing: 0.1rem;
+	text-shadow: 0 .3rem .5rem rgba(0, 0, 0, .5);
+}
+
+.days {
+	display: grid;
+	justify-items: center;
+	align-items: center;
+	height: 65%;
+	grid-template: repeat(6, 1fr)/repeat(7, 1fr);
+}
+
+.days a {
+	color: rgba(0, 64, 133, 1);
+	font-size: calc(.5rem + 2.5vw);
+	line-height: 0%;
+	width: 80%;
+	height: 80%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-shadow: 0 .3rem .5rem rgba(0, 0, 0, .5);
+	text-decoration: none;
+}
+
+@media screen and (max-width: 350px) {
+	.calendar {
+		height: calc(12rem + 95vw);
+	}
+}
+
+@media screen and (max-width: 594px) {
+	.days a {
+		font-size: calc(.7rem + 2.7vw);
+	}
+	.weekdays div {
+		font-size: calc(.4rem + 2.4vw);
+	}
+	.month h1 {
+		font-size: calc(.6rem + 4vw);
+	}
+	.month p {
+		font-size: calc(.6rem + 2.1vw);
+	}
+}
+
+.days a:hover {
+	font-size: calc(1.1rem + 2.7vw);
+	background-color: rgba(184, 218, 255, 1);
+	border: .2rem solid rgba(0, 64, 133, .5);
+	border-radius: .75rem;
+	text-decoration: none;
+}
+
+.days a:not (.valid-day ) {
+	pointer-events: none;
+	cursor: default;
+}
+
+.prev-date, .next-date {
+	opacity: 0.5;
+}
+
+.today {
+	background-color: rgba(115, 168, 225, 1);
+	border-radius: .75rem;
+}
+
+.date-range-menu {
+	margin-top: .1rem;
+}
+
+.date-range-button {
+	margin: 0 4vw;
+	width: 90%;
+	transition: all 0.3s linear;
+}
+
+.date-range-button:hover,
+.date-range-button:focus {
+	transform: translate(-.3rem, -.3rem);
+	box-shadow: .5rem .5rem black;
+}
+
+/* Login area */
+.banner-area .container .login-grid .card-header, .banner-area .container .signup-grid .card-header
+{
+	font-weight: 500;
+	color: hsla(216, 98%, 52%, 1);
+	letter-spacing: .05rem;
+	word-spacing: .05rem;
+}
+
+@media screen and (max-width: 576px) {
+	.banner-area .container .signup-grid .card-body form .input-group {
+		flex-direction: column;
+	}
+}
+
+/* Alertas */
+.alert {
+	padding: .2rem .5rem;
+	margin: .5rem .5rem;
+	border-width: .18rem;
+}
+
+.alert-success {
+	font-weight: 500;
+	background-color: transparent;
+	border-color: hsl(153deg 31% 60%);
+}
+
+.alert-info {
+	font-weight: 500;
+	background-color: transparent;
+	border-color: hsl(190deg 90% 60%);
+}
+
+.alert-danger {
+	font-weight: 500;
+	background-color: transparent;
+	border-color: hsl(354deg 72% 60%);
+}
+
+.header-table, .header-table .float-start a {
+	font-size: 1.4rem;
+	color: #fff;
+}
+
+
+/* Estilos de tabla */
+
+.table-test {
+	
+}
+
+.grid-row {
+	display: flex;
+}
+.grid-row div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	flex-grow: 1;
+	flex-basis: 3rem;
+	width: 6rem;
+	max-height: 20rem;
+	padding: .7rem .4rem;
+	
+	border: 1px solid black;
+	border-color: rgba(0, 0, 0, .3);
+}
+
+.table-test-titles {
+	background-color: hsl(216deg 100% 91%);
+}
+
+.table-test-values div:nth-child(1n+1),
+.column-observations .textarea-container {
+	background-color: hsl(216deg 4% 92%);
+}
+
+.table-test-values div:nth-child(2n) {
+	background-color: white;
+}
+
+.grid-row div,
+.column-observations .title {
+	font-weight: 500;
+}
+
+.grid-row div .form-control,
+.grid-row div,
+.column-observations .title {
+	font-size: 1rem;
+}
+
+.btns-diary {
+	margin-top: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+	.grid-row {
+		flex-direction: column;
+	}
+	.grid-row div {
+		font-size: 1rem;
+		width: 100%;
+		flex-grow: 1;
+	}
+	.table-test-values {
+		flex-shrink: 2;
+	}
+	.table-test-titles {
+		flex-shrink: 1;
+	}
+	.grid-row div .form-control {
+		font-size: 1rem;
+	}
+	.columns-rows-container {
+		display: flex;
+		height: 35rem;
+	}
+	.table-test {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+}
+
+@media screen and (max-width: 518px) {
+	.table-test {
+		justify-content: center;
+	}
+}
+
+#glucemiaObservaciones, #insulinaObservaciones, #correccionObservaciones
+	{
+	max-height: 10rem;
+	min-height: 3rem;
+	height: 5rem;
+}
+
+.column-observations {
+	background-color: hsl(216deg 100% 91%);
+}
+
+.column-observations .title {
+	display: flex;
+	height: 3rem;
+	border: 1px solid rgba(0, 0, 0, .4);
+	justify-content: center;
+	align-items: center;
+}
+
+.textarea-container {
+	border: 1px solid rgba(0, 0, 0, .4);
+	padding: .5rem .5rem;
+}
+
+.table-test .container-main:nth-child(2), .table-test .container-main:nth-child(3)
+	{
+	margin-top: 1.5rem;
+}
+.container-main {
+	box-shadow: 0.3rem 0.3rem 0.2rem 0.1rem hsl(216deg 50% 35%);
+}
+
+.banner-area .card-main {
+	box-shadow: 0.1rem 0.1rem 0.15rem black;
+}
+

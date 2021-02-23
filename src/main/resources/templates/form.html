@@ -1,155 +1,216 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/layout :: head">
+<head th:replace="layout/layout2 :: head2">
 </head>
 <body>
 
-	<header th:replace="layout/layout :: header"></header>
+	<header th:replace="layout/layout2 :: header2"></header>
 
-	<div class="container py-4">
-		<div class="card bg-light">
-			<div class="card-header bg-primary font-weight-bold">
-				<div class="float-start my-0">
-					<a th:href="@{/home}" class="back-link"><i
-						class="fas fa-undo-alt" style="font-size: 1.7rem"></i></a>
-				</div>
-				<div class="float-end">
-					<span style="font-size: 1.4rem; text-align: right;"
-						th:text="${actDate}"></span>
-				</div>
-			</div>
-			<div class="card-body">
-				<form th:action="@{/form}" th:object="${controlDiary}" method="post">
-					<table class="table table-bordered table-light table-striped my-4">
-						<thead class="table-primary">
-							<tr>
-								<th><input type="hidden" th:field="*{date}" /></th>
-								<th>Antes del desayuno</th>
-								<th>Antes del almuerzo</th>
-								<th>Antes de la merienda</th>
-								<th>Antes de la cena</th>
-								<th>Observaciones</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td th:text="'Glucemia'"></td>
-
-								<td><input type="number" class="form-control"
-									th:field="*{glucemiaAntDes}"
-									th:errorclass="'form-control alert-danger'" /><small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('glucemiaAntDes')}"
-									th:errors="*{glucemiaAntDes}"></small></td>
-
-								<td><input type="number" class="form-control"
-									th:field="*{glucemiaAntAlm}"
-									th:errorclass="'form-control alert-danger'" /><small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('glucemiaAntAlm')}"
-									th:errors="*{glucemiaAntAlm}"></small></td>
-
-								<td><input type="number" class="form-control"
-									th:field="*{glucemiaAntMer}"
-									th:errorclass="'form-control alert-danger'" /><small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('glucemiaAntMer')}"
-									th:errors="*{glucemiaAntMer}"></small></td>
-
-								<td><input type="number" class="form-control"
-									th:field="*{glucemiaAntCen}"
-									th:errorclass="'form-control alert-danger'" /><small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('glucemiaAntCen')}"
-									th:errors="*{glucemiaAntCen}"></small></td>
-
-								<td><textarea class="form-control"
-										th:field="*{glucemiaObservaciones}"></textarea></td>
-							</tr>
-							<tr>
-								<td th:text="'Insulina'"></td>
-
-								<td><input type="number" class="form-control"
-									th:field="*{insulinaAntDes}"
-									th:errorclass="'form-control alert-danger'" /><small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('insulinaAntDes')}"
-									th:errors="*{insulinaAntDes}"></small></td>
-
-								<td><input type="number" class="form-control"
-									th:field="*{insulinaAntAlm}"
-									th:errorclass="'form-control alert-danger'" /><small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('insulinaAntAlm')}"
-									th:errors="*{insulinaAntAlm}"></small></td>
-
-								<td><input type="number" class="form-control"
-									th:field="*{insulinaAntMer}"
-									th:errorclass="'form-control alert-danger'" /><small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('insulinaAntMer')}"
-									th:errors="*{insulinaAntMer}"></small></td>
-
-								<td><input type="number" class="form-control"
-									th:field="*{insulinaAntCen}"
-									th:errorclass="'form-control alert-danger'" /><small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('insulinaAntCen')}"
-									th:errors="*{insulinaAntCen}"></small></td>
-
-								<td><textarea class="form-control"
-										th:field="*{insulinaObservaciones}"></textarea></td>
-							</tr>
-							<tr>
-								<td th:text="'Correccion'"></td>
-
-								<td><input type="number" class="form-control"
-									th:field="*{correccionAntDes}"
-									th:errorclass="'form-control alert-danger'" /><small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('correccionAntDes')}"
-									th:errors="*{correccionAntDes}"></small></td>
-
-								<td><input type="number" class="form-control"
-									th:field="*{correccionAntAlm}"
-									th:errorclass="'form-control alert-danger'" /><small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('correccionAntAlm')}"
-									th:errors="*{correccionAntAlm}"></small></td>
-
-								<td><input type="number" class="form-control"
-									th:field="*{correccionAntMer}"
-									th:errorclass="'form-control alert-danger'" /><small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('correccionAntMer')}"
-									th:errors="*{correccionAntMer}"></small></td>
-
-								<td><input type="number" class="form-control"
-									th:field="*{correccionAntCen}"
-									th:errorclass="'form-control alert-danger'" /><small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('correccionAntCen')}"
-									th:errors="*{correccionAntCen}"></small></td>
-
-								<td><textarea class="form-control"
-										th:field="*{correccionObservaciones}"></textarea></td>
-							</tr>
-						</tbody>
-					</table>
-					<div class="form-group row">
-						<div class="col-sm-6">
-							<input type="submit" th:value="'Guardar'" class="btn btn-primary" />
-							<a th:if="${!#strings.isEmpty(controlDiary.username_match)}"
-								class="btn btn-danger" th:href="@{'/reiniciar/' + ${origDate}}"
-								th:text="'Reiniciar'"></a>
-						</div>
+	<section class="banner-area">
+		<div class="container-xxl">
+			<div class="card bg-light card-main">
+				<div class="card-header bg-primary font-weight-bold header-table">
+					<div class="float-start my-0">
+						<a th:href="@{/home}" class="back-link"><i
+							class="fas fa-undo-alt"></i></a>
 					</div>
-				</form>
+					<div class="float-end">
+						<span th:text="${actDate}"></span>
+					</div>
+				</div>
+				<div class="card-body">
+
+					<form th:action="@{/form}" th:object="${controlDiary}"
+						method="post">
+						<div class="table-test">
+							<div class="container-main">
+								<div class="columns-rows-container">
+									<div class="table-test-titles grid-row">
+										<div>
+											<input type="hidden" th:field="*{date}" />
+										</div>
+										<div>Antes del desayuno</div>
+										<div>Antes del almuerzo</div>
+										<div>Antes de la merienda</div>
+										<div>Antes de la cena</div>
+									</div>
+									<div class="table-test-values grid-row">
+										<div>Glucemia</div>
+										<div>
+											<input type="number" class="form-control"
+												th:field="*{glucemiaAntDes}"
+												th:errorclass="'form-control alert-danger'" /><small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('glucemiaAntDes')}"
+												th:errors="*{glucemiaAntDes}"></small>
+										</div>
+										<div>
+											<input type="number" class="form-control"
+												th:field="*{glucemiaAntAlm}"
+												th:errorclass="'form-control alert-danger'" /><small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('glucemiaAntAlm')}"
+												th:errors="*{glucemiaAntAlm}"></small>
+										</div>
+
+										<div>
+											<input type="number" class="form-control"
+												th:field="*{glucemiaAntMer}"
+												th:errorclass="'form-control alert-danger'" /><small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('glucemiaAntMer')}"
+												th:errors="*{glucemiaAntMer}"></small>
+										</div>
+
+										<div>
+											<input type="number" class="form-control"
+												th:field="*{glucemiaAntCen}"
+												th:errorclass="'form-control alert-danger'" /><small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('glucemiaAntCen')}"
+												th:errors="*{glucemiaAntCen}"></small>
+										</div>
+									</div>
+								</div>
+								<div class="column-observations">
+									<div class="title">Observaciones</div>
+									<div class="textarea-container">
+										<textarea class="form-control"
+											th:field="*{glucemiaObservaciones}"></textarea>
+									</div>
+								</div>
+							</div>
+
+							<div class="container-main">
+								<div class="columns-rows-container">
+									<div class="table-test-titles grid-row" id="insulin-row">
+										<div></div>
+										<div>Antes del desayuno</div>
+										<div>Antes del almuerzo</div>
+										<div>Antes de la merienda</div>
+										<div>Antes de la cena</div>
+									</div>
+									<div class="table-test-values grid-row">
+										<div>Insulina</div>
+										<div>
+											<input type="number" class="form-control"
+												th:field="*{insulinaAntDes}"
+												th:errorclass="'form-control alert-danger'" /><small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('insulinaAntDes')}"
+												th:errors="*{insulinaAntDes}"></small>
+										</div>
+
+										<div>
+											<input type="number" class="form-control"
+												th:field="*{insulinaAntAlm}"
+												th:errorclass="'form-control alert-danger'" /><small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('insulinaAntAlm')}"
+												th:errors="*{insulinaAntAlm}"></small>
+										</div>
+
+										<div>
+											<input type="number" class="form-control"
+												th:field="*{insulinaAntMer}"
+												th:errorclass="'form-control alert-danger'" /><small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('insulinaAntMer')}"
+												th:errors="*{insulinaAntMer}"></small>
+										</div>
+
+										<div>
+											<input type="number" class="form-control"
+												th:field="*{insulinaAntCen}"
+												th:errorclass="'form-control alert-danger'" /><small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('insulinaAntCen')}"
+												th:errors="*{insulinaAntCen}"></small>
+										</div>
+									</div>
+								</div>
+								<div class="column-observations">
+									<div class="title">Observaciones</div>
+									<div class="textarea-container">
+										<textarea class="form-control"
+											th:field="*{insulinaObservaciones}"></textarea>
+									</div>
+								</div>
+							</div>
+
+							<div class="container-main">
+								<div class="columns-rows-container">
+									<div class="table-test-titles grid-row" id="correction-row">
+										<div></div>
+										<div>Antes del desayuno</div>
+										<div>Antes del almuerzo</div>
+										<div>Antes de la merienda</div>
+										<div>Antes de la cena</div>
+									</div>
+									<div class="table-test-values grid-row">
+										<div>Correccion</div>
+										<div>
+											<input type="number" class="form-control"
+												th:field="*{correccionAntDes}"
+												th:errorclass="'form-control alert-danger'" /><small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('correccionAntDes')}"
+												th:errors="*{correccionAntDes}"></small>
+										</div>
+
+										<div>
+											<input type="number" class="form-control"
+												th:field="*{correccionAntAlm}"
+												th:errorclass="'form-control alert-danger'" /><small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('correccionAntAlm')}"
+												th:errors="*{correccionAntAlm}"></small>
+										</div>
+
+										<div>
+											<input type="number" class="form-control"
+												th:field="*{correccionAntMer}"
+												th:errorclass="'form-control alert-danger'" /><small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('correccionAntMer')}"
+												th:errors="*{correccionAntMer}"></small>
+										</div>
+
+										<div>
+											<input type="number" class="form-control"
+												th:field="*{correccionAntCen}"
+												th:errorclass="'form-control alert-danger'" /><small
+												class="form-text text-danger"
+												th:if="${#fields.hasErrors('correccionAntCen')}"
+												th:errors="*{correccionAntCen}"></small>
+										</div>
+									</div>
+								</div>
+								<div class="column-observations">
+									<div class="title">Observaciones</div>
+									<div class="textarea-container">
+										<textarea class="form-control"
+											th:field="*{correccionObservaciones}"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group row btns-diary">
+							<div class="col-sm-6">
+								<input type="submit" th:value="'Guardar'"
+									class="btn btn-primary" /> <a
+									th:if="${!#strings.isEmpty(controlDiary.username_match)}"
+									class="btn btn-danger" th:href="@{'/reiniciar/' + ${origDate}}"
+									th:text="'Reiniciar'"></a>
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 
-	<footer th:replace="layout/layout :: footer"></footer>
+	<footer th:replace="layout/layout2 :: footer2"></footer>
 
 </body>
 </html>
