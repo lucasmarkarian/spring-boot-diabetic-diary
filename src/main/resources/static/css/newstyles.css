@@ -268,7 +268,7 @@ footer p:last-of-type {
 	text-decoration: none;
 }
 
-.days a:not (.valid-day ) {
+.days a:not(.valid-day) {
 	pointer-events: none;
 	cursor: default;
 }
