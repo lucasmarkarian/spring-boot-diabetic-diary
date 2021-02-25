@@ -3,19 +3,7 @@
 @import url('login-styles.css');
 @import url('calendar-styles.css');
 @import url('table-styles.css');
-
-@keyframes bounce {
-	10% {transform: translateY(0rem);
-		animation-timing-function: ease-in;}
-	30% {transform: translateY(2.2rem);
-		animation-timing-function: ease-out;}
-	50% {transform: translateY(1rem);
-		animation-timing-function: ease-in;}
-	70% {transform: translateY(1.2rem);
-		animation-timing-function: ease-out;}
-	100% {transform: translateY(2.2rem);
-		animation-timing-function: ease-in;}
-}
+@import url('contact-styles.css');
 
 * {
 	margin: 0;
@@ -122,7 +110,7 @@ html, body {
 }
 
 .banner-area {
-	padding: 5rem;
+	padding: 5vw;
 	max-height: 1000rem;
 	display: flex;
 	flex-direction: column;
@@ -161,100 +149,5 @@ footer p:last-of-type {
 	footer p {
 		margin-bottom: 10px;
 	}
-}
-
-/* Contact styles */
-
-.grid-contact {
-	display: grid;
-	gap: 2rem;
-	grid-template-columns: repeat(auto-fill,minmax(12rem, 1fr));
-}
-
-.container-contact {
-	position: relative;
-	transition: transform .4s linear;
-}
-
-.grid-contact .container-info {
-	position: relative;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
-	padding: .5rem 1rem;
-	border: .15rem solid rgba(0,0,0,.6);
-	border-radius: 1.5rem / 3rem;
-	background-color: hsl(58deg 100% 81%);
-	z-index: 1;
-}
-
-.grid-contact .icon {
-	width: 48px;
-	height: 48px;
-	background-size: cover;
-}
-
-.grid-contact .icon-fb {
-	background-image: url("../images/fb-icon.png");
-}
-
-.grid-contact .icon-wsp {
-	background-image: url("../images/wsp-icon.png");
-}
-
-.grid-contact .icon-in {
-	background-image: url("../images/in-icon.png");
-}
-
-.grid-contact .icon-mail {
-	background-image: url("../images/mail-icon.png");
-}
-
-.grid-contact .icon-gmail {
-	background-image: url("../images/gmail-icon.png");
-}
-
-.grid-contact .icon-git {
-	background-image: url("../images/git-icon.png");
-}
-
-.cuenta {
-	position: absolute;
-	width: 100%;
-	height: 2.3rem;
-	top: 0;
-	display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    transition: transform .5s ease-in-out;
-}
-
-.cuenta p {
-	padding: .1rem .5rem;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	font-weight: 500;
-}
-
-.cuenta p::after {
-	content: '';
-    display: block;
-    width: 0;
-    height: 2px;
-    background: rgba(0,0,0,.6);
-    transition: width .3s .5s;
-}
-
-.grid-contact .container-contact:hover {
-	transform: translate(0, -1.8rem);
-}
-
-.grid-contact .container-contact:hover>.cuenta {
-	transform: translateY(4.3rem);
-}
-
-.grid-contact .container-contact:hover>.cuenta p::after {
-	width: 100%;
 }
 
