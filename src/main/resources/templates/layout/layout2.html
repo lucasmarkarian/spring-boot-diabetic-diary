@@ -23,8 +23,8 @@
 			<div class="nav-links">
 				<ul class="ul-links">
 					<li><a class="header-link" th:href="@{/home}">Home</a></li>
-					<li><a class="header-link" href="#">About me</a></li>
-					<li><a class="header-link" href="#">Contact</a></li>
+<!-- 					<li><a class="header-link" href="#">About me</a></li> -->
+					<li><a class="header-link" th:href="@{/contact}">Contact</a></li>
 				</ul>
 				<div class="btn-group" sec:authorize="isAuthenticated()">
 					<button type="button" class="btn btn-primary dropdown-toggle"

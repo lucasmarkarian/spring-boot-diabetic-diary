@@ -1,0 +1,13 @@
+.banner-area .container .login-grid .card-header, .banner-area .container .signup-grid .card-header
+	{
+	font-weight: 500;
+	color: hsla(216, 98%, 52%, 1);
+	letter-spacing: .05rem;
+	word-spacing: .05rem;
+}
+
+@media screen and (max-width: 576px) {
+	.banner-area .container .signup-grid .card-body form .input-group {
+		flex-direction: column;
+	}
+}

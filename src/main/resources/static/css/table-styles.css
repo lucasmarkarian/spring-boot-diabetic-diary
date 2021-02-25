@@ -1,0 +1,119 @@
+.table-test {
+	
+}
+
+.grid-row {
+	display: flex;
+}
+
+.grid-row div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	flex-grow: 1;
+	flex-basis: 3rem;
+	width: 6rem;
+	max-height: 20rem;
+	padding: .7rem .4rem;
+	border: 1px solid black;
+	border-color: rgba(0, 0, 0, .3);
+}
+
+.table-test-titles {
+	background-color: hsl(216deg 100% 91%);
+}
+
+.table-test-values div:nth-child(1n+1), .column-observations .textarea-container
+	{
+	background-color: hsl(216deg 4% 92%);
+}
+
+.table-test-values div:nth-child(2n) {
+	background-color: white;
+}
+
+.grid-row div, .column-observations .title {
+	font-weight: 500;
+}
+
+.grid-row div .form-control, .grid-row div, .column-observations .title
+	{
+	font-size: 1rem;
+}
+
+.btns-diary {
+	margin-top: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+	.grid-row {
+		flex-direction: column;
+	}
+	.grid-row div {
+		font-size: 1rem;
+		width: 100%;
+		flex-grow: 1;
+	}
+	.table-test-values {
+		flex-shrink: 2;
+	}
+	.table-test-titles {
+		flex-shrink: 1;
+	}
+	.grid-row div .form-control {
+		font-size: 1rem;
+	}
+	.columns-rows-container {
+		display: flex;
+		height: 35rem;
+	}
+	.table-test {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+}
+
+@media screen and (max-width: 518px) {
+	.table-test {
+		justify-content: center;
+	}
+}
+
+#glucemiaObservaciones, #insulinaObservaciones, 
+#correccionObservaciones {
+	max-height: 10rem;
+	min-height: 3rem;
+	height: 5rem;
+}
+
+.column-observations {
+	background-color: hsl(216deg 100% 91%);
+}
+
+.column-observations .title {
+	display: flex;
+	height: 3rem;
+	border: 1px solid rgba(0, 0, 0, .4);
+	justify-content: center;
+	align-items: center;
+}
+
+.textarea-container {
+	border: 1px solid rgba(0, 0, 0, .4);
+	padding: .5rem .5rem;
+}
+
+.table-test .container-main:nth-child(2), .table-test .container-main:nth-child(3)
+	{
+	margin-top: 1.5rem;
+}
+
+.container-main {
+	box-shadow: 0.3rem 0.3rem 0.2rem 0.1rem hsl(216deg 50% 35%);
+}
+
+.banner-area .card-main {
+	box-shadow: 0.1rem 0.1rem 0.15rem black;
+}

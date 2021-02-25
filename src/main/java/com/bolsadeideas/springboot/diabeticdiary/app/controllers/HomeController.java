@@ -180,4 +180,9 @@ public class HomeController {
 		return "redirect:/form/" + actDate;
 	}
 	
+	@GetMapping(value = "/contact")
+	public String contact() {
+		return "contact";
+	}
+	
 }
