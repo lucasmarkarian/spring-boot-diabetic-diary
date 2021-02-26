@@ -37,35 +37,35 @@
 									<div class="table-test-values grid-row">
 										<div>Glucemia</div>
 										<div>
-											<input type="number" class="form-control"
+											<input type="text" class="form-control"
 												th:field="*{glucemiaAntDes}"
-												th:errorclass="'form-control alert-danger'" /><small
+												th:errorclass="'form-control alert-danger'" maxlength="3"/><small
 												class="form-text text-danger"
 												th:if="${#fields.hasErrors('glucemiaAntDes')}"
 												th:errors="*{glucemiaAntDes}"></small>
 										</div>
 										<div>
-											<input type="number" class="form-control"
+											<input type="text" class="form-control"
 												th:field="*{glucemiaAntAlm}"
-												th:errorclass="'form-control alert-danger'" /><small
+												th:errorclass="'form-control alert-danger'" maxlength="3"/><small
 												class="form-text text-danger"
 												th:if="${#fields.hasErrors('glucemiaAntAlm')}"
 												th:errors="*{glucemiaAntAlm}"></small>
 										</div>
 
 										<div>
-											<input type="number" class="form-control"
+											<input type="text" class="form-control"
 												th:field="*{glucemiaAntMer}"
-												th:errorclass="'form-control alert-danger'" /><small
+												th:errorclass="'form-control alert-danger'" maxlength="3"/><small
 												class="form-text text-danger"
 												th:if="${#fields.hasErrors('glucemiaAntMer')}"
 												th:errors="*{glucemiaAntMer}"></small>
 										</div>
 
 										<div>
-											<input type="number" class="form-control"
+											<input type="text" class="form-control"
 												th:field="*{glucemiaAntCen}"
-												th:errorclass="'form-control alert-danger'" /><small
+												th:errorclass="'form-control alert-danger'" maxlength="3"/><small
 												class="form-text text-danger"
 												th:if="${#fields.hasErrors('glucemiaAntCen')}"
 												th:errors="*{glucemiaAntCen}"></small>
@@ -93,36 +93,36 @@
 									<div class="table-test-values grid-row">
 										<div>Insulina</div>
 										<div>
-											<input type="number" class="form-control"
+											<input type="text" class="form-control"
 												th:field="*{insulinaAntDes}"
-												th:errorclass="'form-control alert-danger'" /><small
+												th:errorclass="'form-control alert-danger'" maxlength="3"/><small
 												class="form-text text-danger"
 												th:if="${#fields.hasErrors('insulinaAntDes')}"
 												th:errors="*{insulinaAntDes}"></small>
 										</div>
 
 										<div>
-											<input type="number" class="form-control"
+											<input type="text" class="form-control"
 												th:field="*{insulinaAntAlm}"
-												th:errorclass="'form-control alert-danger'" /><small
+												th:errorclass="'form-control alert-danger'" maxlength="3"/><small
 												class="form-text text-danger"
 												th:if="${#fields.hasErrors('insulinaAntAlm')}"
 												th:errors="*{insulinaAntAlm}"></small>
 										</div>
 
 										<div>
-											<input type="number" class="form-control"
+											<input type="text" class="form-control"
 												th:field="*{insulinaAntMer}"
-												th:errorclass="'form-control alert-danger'" /><small
+												th:errorclass="'form-control alert-danger'" maxlength="3"/><small
 												class="form-text text-danger"
 												th:if="${#fields.hasErrors('insulinaAntMer')}"
 												th:errors="*{insulinaAntMer}"></small>
 										</div>
 
 										<div>
-											<input type="number" class="form-control"
+											<input type="text" class="form-control"
 												th:field="*{insulinaAntCen}"
-												th:errorclass="'form-control alert-danger'" /><small
+												th:errorclass="'form-control alert-danger'" maxlength="3"/><small
 												class="form-text text-danger"
 												th:if="${#fields.hasErrors('insulinaAntCen')}"
 												th:errors="*{insulinaAntCen}"></small>
@@ -150,36 +150,36 @@
 									<div class="table-test-values grid-row">
 										<div>Correccion</div>
 										<div>
-											<input type="number" class="form-control"
+											<input type="text" class="form-control"
 												th:field="*{correccionAntDes}"
-												th:errorclass="'form-control alert-danger'" /><small
+												th:errorclass="'form-control alert-danger'" maxlength="3"/><small
 												class="form-text text-danger"
 												th:if="${#fields.hasErrors('correccionAntDes')}"
 												th:errors="*{correccionAntDes}"></small>
 										</div>
 
 										<div>
-											<input type="number" class="form-control"
+											<input type="text" class="form-control"
 												th:field="*{correccionAntAlm}"
-												th:errorclass="'form-control alert-danger'" /><small
+												th:errorclass="'form-control alert-danger'" maxlength="3"/><small
 												class="form-text text-danger"
 												th:if="${#fields.hasErrors('correccionAntAlm')}"
 												th:errors="*{correccionAntAlm}"></small>
 										</div>
 
 										<div>
-											<input type="number" class="form-control"
+											<input type="text" class="form-control"
 												th:field="*{correccionAntMer}"
-												th:errorclass="'form-control alert-danger'" /><small
+												th:errorclass="'form-control alert-danger'" maxlength="3"/><small
 												class="form-text text-danger"
 												th:if="${#fields.hasErrors('correccionAntMer')}"
 												th:errors="*{correccionAntMer}"></small>
 										</div>
 
 										<div>
-											<input type="number" class="form-control"
+											<input type="text" class="form-control"
 												th:field="*{correccionAntCen}"
-												th:errorclass="'form-control alert-danger'" /><small
+												th:errorclass="'form-control alert-danger'" maxlength="3"/><small
 												class="form-text text-danger"
 												th:if="${#fields.hasErrors('correccionAntCen')}"
 												th:errors="*{correccionAntCen}"></small>
@@ -209,7 +209,9 @@
 			</div>
 		</div>
 	</section>
-
+	
+	<hr class="division" />
+	
 	<footer th:replace="layout/layout2 :: footer2"></footer>
 
 </body>

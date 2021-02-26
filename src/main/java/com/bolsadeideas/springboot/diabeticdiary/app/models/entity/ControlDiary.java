@@ -10,7 +10,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -29,57 +28,45 @@ public class ControlDiary implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date;
 
-	@NotNull
-	@Min(value = 0)
-	private Integer glucemiaAntDes = 0;
+	@Min(value = 1)
+	private Integer glucemiaAntDes;
 
-	@NotNull
-	@Min(value = 0)
-	private Integer glucemiaAntAlm = 0;
+	@Min(value = 1)
+	private Integer glucemiaAntAlm;
 
-	@NotNull
-	@Min(value = 0)
-	private Integer glucemiaAntMer = 0;
+	@Min(value = 1)
+	private Integer glucemiaAntMer;
 
-	@NotNull
-	@Min(value = 0)
-	private Integer glucemiaAntCen = 0;
+	@Min(value = 1)
+	private Integer glucemiaAntCen;
 	
 	private String glucemiaObservaciones;
 
-	@NotNull
-	@Min(value = 0)
-	private Integer insulinaAntDes = 0;
+	@Min(value = 1)
+	private Integer insulinaAntDes;
 
-	@NotNull
-	@Min(value = 0)
-	private Integer insulinaAntAlm = 0;
+	@Min(value = 1)
+	private Integer insulinaAntAlm;
 
-	@NotNull
-	@Min(value = 0)
-	private Integer insulinaAntMer = 0;
+	@Min(value = 1)
+	private Integer insulinaAntMer;
 
-	@NotNull
-	@Min(value = 0)
-	private Integer insulinaAntCen = 0;
+	@Min(value = 1)
+	private Integer insulinaAntCen;
 	
 	private String insulinaObservaciones;
 
-	@NotNull
-	@Min(value = 0)
-	private Integer correccionAntDes = 0;
+	@Min(value = 1)
+	private Integer correccionAntDes;
 
-	@NotNull
-	@Min(value = 0)
-	private Integer correccionAntAlm = 0;
+	@Min(value = 1)
+	private Integer correccionAntAlm;
 
-	@NotNull
-	@Min(value = 0)
-	private Integer correccionAntMer = 0;
+	@Min(value = 1)
+	private Integer correccionAntMer;
 
-	@NotNull
-	@Min(value = 0)
-	private Integer correccionAntCen = 0;
+	@Min(value = 1)
+	private Integer correccionAntCen;
 	
 	private String correccionObservaciones;
 
@@ -220,30 +207,30 @@ public class ControlDiary implements Serializable {
 	}
 
 	public boolean glucemiaHasValues() {
-		if (this.glucemiaAntDes != 0
-				|| this.glucemiaAntAlm != 0
-				|| this.glucemiaAntMer != 0
-				|| this.glucemiaAntCen != 0) {
+		if (this.glucemiaAntDes != null
+				|| this.glucemiaAntAlm != null
+				|| this.glucemiaAntMer != null
+				|| this.glucemiaAntCen != null) {
 			return true;
 		}
 		return false;
 	}
 	
 	public boolean insulinaHasValues() {
-		if (this.insulinaAntDes != 0
-				|| this.insulinaAntAlm != 0
-				|| this.insulinaAntMer != 0
-				|| this.insulinaAntCen != 0) {
+		if (this.insulinaAntDes != null
+				|| this.insulinaAntAlm != null
+				|| this.insulinaAntMer != null
+				|| this.insulinaAntCen != null) {
 			return true;
 		}
 		return false;
 	}
 	
 	public boolean correccionHasValues() {
-		if (this.correccionAntDes != 0
-				|| this.correccionAntAlm != 0
-				|| this.correccionAntMer != 0
-				|| this.correccionAntCen != 0) {
+		if (this.correccionAntDes != null
+				|| this.correccionAntAlm != null
+				|| this.correccionAntMer != null
+				|| this.correccionAntCen != null) {
 			return true;
 		}
 		return false;

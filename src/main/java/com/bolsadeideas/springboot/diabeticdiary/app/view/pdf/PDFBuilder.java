@@ -108,22 +108,22 @@ public class PDFBuilder extends AbstractPdfView {
 			cell.setFixedHeight(35);
 			tabla.addCell(cell);
 			
-			cell = new PdfPCell(new Phrase(control.getGlucemiaAntDes().toString()));
+			cell = new PdfPCell(new Phrase(control.getGlucemiaAntDes() != null ? control.getGlucemiaAntDes().toString() : ""));
 			cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
 			cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 			tabla.addCell(cell);
 			
-			cell = new PdfPCell(new Phrase(control.getGlucemiaAntAlm().toString()));
+			cell = new PdfPCell(new Phrase(control.getGlucemiaAntAlm() != null ? control.getGlucemiaAntAlm().toString() : ""));
 			cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
 			cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 			tabla.addCell(cell);
 			
-			cell = new PdfPCell(new Phrase(control.getGlucemiaAntMer().toString()));
+			cell = new PdfPCell(new Phrase(control.getGlucemiaAntMer() != null ? control.getGlucemiaAntMer().toString() : ""));
 			cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
 			cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 			tabla.addCell(cell);
 			
-			cell = new PdfPCell(new Phrase(control.getGlucemiaAntCen().toString()));
+			cell = new PdfPCell(new Phrase(control.getGlucemiaAntCen() != null ? control.getGlucemiaAntCen().toString() : ""));
 			cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
 			cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 			tabla.addCell(cell);
@@ -138,22 +138,22 @@ public class PDFBuilder extends AbstractPdfView {
 			cell.setFixedHeight(35);
 			tabla.addCell(cell);
 			
-			cell = new PdfPCell(new Phrase(control.getInsulinaAntDes().toString()));
+			cell = new PdfPCell(new Phrase(control.getInsulinaAntDes() != null ? control.getInsulinaAntDes().toString() : ""));
 			cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
 			cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 			tabla.addCell(cell);
 			
-			cell = new PdfPCell(new Phrase(control.getInsulinaAntAlm().toString()));
+			cell = new PdfPCell(new Phrase(control.getInsulinaAntAlm() != null ? control.getInsulinaAntAlm().toString() : ""));
 			cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
 			cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 			tabla.addCell(cell);
 			
-			cell = new PdfPCell(new Phrase(control.getInsulinaAntMer().toString()));
+			cell = new PdfPCell(new Phrase(control.getInsulinaAntMer() != null ? control.getInsulinaAntMer().toString() : ""));
 			cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
 			cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 			tabla.addCell(cell);
 			
-			cell = new PdfPCell(new Phrase(control.getInsulinaAntCen().toString()));
+			cell = new PdfPCell(new Phrase(control.getInsulinaAntCen() != null ? control.getInsulinaAntCen().toString() : ""));
 			cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
 			cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 			tabla.addCell(cell);
@@ -168,22 +168,22 @@ public class PDFBuilder extends AbstractPdfView {
 			cell.setFixedHeight(35);
 			tabla.addCell(cell);
 			
-			cell = new PdfPCell(new Phrase(control.getCorreccionAntDes().toString()));
+			cell = new PdfPCell(new Phrase(control.getCorreccionAntDes() != null ? control.getCorreccionAntDes().toString() : ""));
 			cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
 			cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 			tabla.addCell(cell);
 			
-			cell = new PdfPCell(new Phrase(control.getCorreccionAntAlm().toString()));
+			cell = new PdfPCell(new Phrase(control.getCorreccionAntAlm() != null ? control.getCorreccionAntAlm().toString() : ""));
 			cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
 			cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 			tabla.addCell(cell);
 			
-			cell = new PdfPCell(new Phrase(control.getCorreccionAntMer().toString()));
+			cell = new PdfPCell(new Phrase(control.getCorreccionAntMer() != null ? control.getCorreccionAntMer().toString() : ""));
 			cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
 			cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 			tabla.addCell(cell);
 			
-			cell = new PdfPCell(new Phrase(control.getCorreccionAntCen().toString()));
+			cell = new PdfPCell(new Phrase(control.getCorreccionAntCen() != null ? control.getCorreccionAntCen().toString() : ""));
 			cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
 			cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 			tabla.addCell(cell);

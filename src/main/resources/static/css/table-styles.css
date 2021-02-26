@@ -1,3 +1,26 @@
+@keyframes rotate {
+	0% {transform: rotate(0deg);
+		animation-timing-function: ease-in;}
+	25% {transform: rotate(-90deg);
+		animation-timing-function: ease-in;}
+	50% {transform: rotate(-180deg);
+		animation-timing-function: ease-in;}
+	75% {transform: rotate(-270deg);
+		animation-timing-function: ease-in;}
+	100% {transform: rotate(-360deg);
+		animation-timing-function: ease-out;}
+}
+
+.fa-undo-alt {
+/* 	transition: font-size .5s ease-in; */
+}
+
+.fa-undo-alt:hover {
+/* 	font-size: 1.5rem; */
+	animation-name: rotate;
+	animation-duration: .5s;
+}
+
 .table-test {
 	
 }
@@ -8,6 +31,7 @@
 
 .grid-row div {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
@@ -116,4 +140,8 @@
 
 .banner-area .card-main {
 	box-shadow: 0.1rem 0.1rem 0.15rem black;
+}
+
+.grid-row .form-control:invalid {
+	border: 1px solid red;
 }

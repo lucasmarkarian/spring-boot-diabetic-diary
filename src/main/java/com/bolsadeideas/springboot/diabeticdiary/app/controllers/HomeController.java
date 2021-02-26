@@ -27,46 +27,46 @@ import com.bolsadeideas.springboot.diabeticdiary.app.models.service.IControlDiar
 
 @Controller
 public class HomeController {
-	
+
 	@Autowired
 	IControlDiaryService controlDiaryService;
-	
-	@GetMapping(value = {"", "/", "/home"})
+
+	@GetMapping(value = { "", "/", "/home" })
 	public String home() {
 		return "home2";
 	}
-	
+
 	@GetMapping(value = "/form/{fullDate}")
-	public String showDate(@PathVariable(value = "fullDate") String fullDate, 
-			Model model, RedirectAttributes flash) throws ParseException {
-		
+	public String showDate(@PathVariable(value = "fullDate") String fullDate, Model model, RedirectAttributes flash)
+			throws ParseException {
+
 		String dateStr = fullDate;
-		
+
 		String pattern = "yyyy-MM-dd";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
 		Date date = new Date();
-		
+
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();
-		
+
 		try {
 			date = simpleDateFormat.parse(dateStr);
 		} catch (ParseException e) {
 			flash.addFlashAttribute("error", "Formato de fecha INVALIDO!");
 			return "redirect:/home";
 		}
-		
+
 		Date actualDate = Calendar.getInstance().getTime();
-		
+
 		if (date.compareTo(actualDate) <= 0) {
 			ControlDiary controlDiary = this.controlDiaryService.findOne(new AccountId(username, date));
-			
+
 			if (controlDiary == null) {
 				controlDiary = new ControlDiary();
 				controlDiary.setDate(date);
 			}
-			
+
 			simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 			dateStr = simpleDateFormat.format(date);
 			model.addAttribute("controlDiary", controlDiary);
@@ -78,18 +78,18 @@ public class HomeController {
 			flash.addFlashAttribute("error", "Fecha INVALIDA, superior a la fecha actual!");
 			return "redirect:/home";
 		}
-		
+
 	}
-	
+
 	@PostMapping(value = "/form")
-	public String guardar(@Valid ControlDiary control , BindingResult result) {
-		
+	public String guardar(@Valid ControlDiary control, BindingResult result) {
+
 		if (result.hasErrors()) {
 			return "form";
 		}
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (control.hasInfo()) {
-			
+
 			control.setUsername_match(auth.getName());
 			this.controlDiaryService.save(control);
 		} else {
@@ -99,77 +99,77 @@ public class HomeController {
 			}
 		}
 		
-		return "redirect:home";
-	}
-	
-	@PostMapping(value = "/test")
-	public String redirectControls(@RequestParam("desde") String desde,
-			@RequestParam("hasta") String hasta,
-			Model model) throws ParseException {
-		
-		return "redirect:test/".concat(desde).concat("/").concat(hasta);
-	}
-	
-	@GetMapping("test/{desde}/{hasta}")
-	public String showControls(@PathVariable(value = "desde") String desde,
-			@PathVariable(value = "hasta") String hasta,
-			Model model, RedirectAttributes flash) throws ParseException {
-		
 		String pattern = "yyyy-MM-dd";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		
+		return "redirect:/form/" + simpleDateFormat.format(control.getDate());
+	}
+
+	@PostMapping(value = "/test")
+	public String redirectControls(@RequestParam("desde") String desde, @RequestParam("hasta") String hasta,
+			Model model) throws ParseException {
+
+		return "redirect:test/".concat(desde).concat("/").concat(hasta);
+	}
+
+	@GetMapping("test/{desde}/{hasta}")
+	public String showControls(@PathVariable(value = "desde") String desde, @PathVariable(value = "hasta") String hasta,
+			Model model, RedirectAttributes flash) throws ParseException {
+
+		String pattern = "yyyy-MM-dd";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
 		Date desdeFormated = null;
 		Date hastaFormated = null;
 		try {
 			desdeFormated = simpleDateFormat.parse(desde);
 			hastaFormated = simpleDateFormat.parse(hasta);
-		} catch (ParseException e) {
-			flash.addFlashAttribute("error", "Formato de fecha incorrecto!");
-			return "redirect:/home";
-		}
-		
-		Date actualDate = Calendar.getInstance().getTime();
-		
-		if (desdeFormated.compareTo(actualDate) <= 0
-				&& hastaFormated.compareTo(actualDate) <= 0) {
-			int compareDate = hastaFormated.compareTo(desdeFormated);		
-			if (compareDate >= 0) {
-				System.out.println("EL RANGO ES VALIDO!");
-				
-				long diffInMillies = Math.abs(hastaFormated.getTime() - desdeFormated.getTime());
-			    long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
-			    if (diff <= 30) {
-			    	simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-			    	String desdeTitulo = simpleDateFormat.format(desdeFormated);
-			    	String hastaTitulo = simpleDateFormat.format(hastaFormated);
-			    	
-			    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			    	List<ControlDiary> controles = this.controlDiaryService.findByUsernameBetweenDates(auth.getName(), desdeFormated, hastaFormated);
-			    	if (controles.isEmpty()) {
-						flash.addFlashAttribute("warning", "Lo sentimos, no hay controles para las fechas dadas!");
-						return "redirect:/home";
+			Date actualDate = Calendar.getInstance().getTime();
+
+			if (desdeFormated.compareTo(actualDate) <= 0 && hastaFormated.compareTo(actualDate) <= 0) {
+				int compareDate = hastaFormated.compareTo(desdeFormated);
+				if (compareDate >= 0) {
+					System.out.println("EL RANGO ES VALIDO!");
+
+					long diffInMillies = Math.abs(hastaFormated.getTime() - desdeFormated.getTime());
+					long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+					if (diff <= 30) {
+						simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+						String desdeTitulo = simpleDateFormat.format(desdeFormated);
+						String hastaTitulo = simpleDateFormat.format(hastaFormated);
+
+						Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+						List<ControlDiary> controles = this.controlDiaryService
+								.findByUsernameBetweenDates(auth.getName(), desdeFormated, hastaFormated);
+						if (controles.isEmpty()) {
+							flash.addFlashAttribute("warning", "Lo sentimos, no hay controles para las fechas dadas!");
+							return "redirect:/home";
+						}
+						model.addAttribute("desdeTitulo", desdeTitulo);
+						model.addAttribute("hastaTitulo", hastaTitulo);
+						model.addAttribute("desde", desde);
+						model.addAttribute("hasta", hasta);
+						model.addAttribute("controles", controles);
+						return "test";
+					} else {
+						System.out.println("LA CANTIDAD DE DIAS NO ES VALIDA!");
+						flash.addFlashAttribute("error",
+								"Rango INVALIDO, la cantidad maxima de dias permitidos es 31 !");
 					}
-			    	model.addAttribute("desdeTitulo", desdeTitulo);
-			    	model.addAttribute("hastaTitulo", hastaTitulo);
-			    	model.addAttribute("desde", desde);
-			    	model.addAttribute("hasta", hasta);
-			    	model.addAttribute("controles", controles);
-			    	return "test";
 				} else {
-					System.out.println("LA CANTIDAD DE DIAS NO ES VALIDA!");
-					flash.addFlashAttribute("error", "Rango INVALIDO, la cantidad maxima de dias permitidos es 31 !");
+					System.out.println("EL RANGO NO ES VALIDO!");
+					flash.addFlashAttribute("error", "Rango INVALIDO, fecha 'desde' superior a fecha 'hasta' !");
 				}
 			} else {
-				System.out.println("EL RANGO NO ES VALIDO!");
-				flash.addFlashAttribute("error", "Rango INVALIDO, fecha 'desde' superior a fecha 'hasta' !");
+				flash.addFlashAttribute("error", "Rango INVALIDO, fecha 'desde' o fecha 'hasta' superior a la fecha actual !");
 			}
-		} else {
-			flash.addFlashAttribute("error", "Rango INVALIDO, fecha 'desde' o fecha 'hasta' superior a la fecha actual !");
+		} catch (ParseException e) {
+			flash.addFlashAttribute("error", "Formato de fecha incorrecto!");
 		}
-		
+
 		return "redirect:/home";
 	}
-	
+
 	@GetMapping("/reiniciar/{actDate}")
 	public String reiniciar(@PathVariable(value = "actDate") String actDate) throws ParseException {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -179,10 +179,10 @@ public class HomeController {
 		this.controlDiaryService.delete(account);
 		return "redirect:/form/" + actDate;
 	}
-	
+
 	@GetMapping(value = "/contact")
 	public String contact() {
 		return "contact";
 	}
-	
+
 }
