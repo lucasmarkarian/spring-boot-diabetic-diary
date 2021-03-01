@@ -1,10 +1,15 @@
+.calendar-area {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 .calendar {
+	width: 80%;
 	height: calc(14rem + 29vw);
 	background-color: rgba(184, 218, 255, 1);
 	box-shadow: 0 .5rem 3rem rgba(0, 0, 0, 1);
 	border-radius: 1.2rem 1.2rem 1rem 1rem;
-	top: 0;
-	left: 0;
 }
 
 .month {
@@ -92,27 +97,6 @@
 	text-decoration: none;
 }
 
-@media screen and (max-width: 350px) {
-	.calendar {
-		height: calc(12rem + 95vw);
-	}
-}
-
-@media screen and (max-width: 594px) {
-	.days a {
-		font-size: calc(.7rem + 2.7vw);
-	}
-	.weekdays div {
-		font-size: calc(.4rem + 2.4vw);
-	}
-	.month h1 {
-		font-size: calc(.6rem + 4vw);
-	}
-	.month p {
-		font-size: calc(.6rem + 2.1vw);
-	}
-}
-
 .days a:hover {
 	font-size: calc(1.1rem + 2.7vw);
 	background-color: rgba(184, 218, 255, 1);
@@ -136,6 +120,7 @@
 }
 
 .date-range-menu {
+	width: 80%;
 	margin-top: .1rem;
 }
 
@@ -148,4 +133,31 @@
 .date-range-button:hover, .date-range-button:focus {
 	transform: translate(-.3rem, -.3rem);
 	box-shadow: .5rem .5rem black;
+}
+
+@media screen and (max-width: 594px) {
+	.calendar,
+	.date-range-menu {
+		width: 90%;
+	}
+	
+	.days a {
+		font-size: calc(.9rem + 2vw);
+	}
+	.weekdays div {
+		font-size: calc(.4rem + 2.4vw);
+	}
+	.month h1 {
+		font-size: calc(.6rem + 4vw);
+	}
+	.month p {
+		font-size: calc(.6rem + 2.1vw);
+	}
+}
+
+@media screen and (max-width: 350px) {
+	.calendar {
+		height: calc(12rem + 95vw);
+		width: 100%;
+	}
 }

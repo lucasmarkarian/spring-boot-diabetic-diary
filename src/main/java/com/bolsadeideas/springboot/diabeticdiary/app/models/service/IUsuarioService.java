@@ -7,5 +7,7 @@ public interface IUsuarioService {
 	public Usuario findByUsername(String username);
 	
 	public void save(Usuario usuario);
+	
+	public Integer getAccountsNumber();
 
 }

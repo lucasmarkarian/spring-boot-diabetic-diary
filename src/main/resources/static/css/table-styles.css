@@ -1,24 +1,22 @@
-@keyframes rotate {
-	0% {transform: rotate(0deg);
-		animation-timing-function: ease-in;}
-	25% {transform: rotate(-90deg);
-		animation-timing-function: ease-in;}
-	50% {transform: rotate(-180deg);
-		animation-timing-function: ease-in;}
-	75% {transform: rotate(-270deg);
-		animation-timing-function: ease-in;}
-	100% {transform: rotate(-360deg);
-		animation-timing-function: ease-out;}
+.float-end .form-date a {
+	color: white;
+	width: 1rem;
+}
+
+.fa-caret-left {
+	padding-right: .5rem;
+}
+
+.fa-caret-right {
+	padding-left: .5rem;
 }
 
 .fa-undo-alt {
-/* 	transition: font-size .5s ease-in; */
+	transition: all .5s ease-in;
 }
 
 .fa-undo-alt:hover {
-/* 	font-size: 1.5rem; */
-	animation-name: rotate;
-	animation-duration: .5s;
+	transform: rotate(-360deg);
 }
 
 .table-test {
@@ -102,6 +100,16 @@
 @media screen and (max-width: 518px) {
 	.table-test {
 		justify-content: center;
+	}
+}
+
+@media screen and (max-width: 335px) {
+	.table-test-values small {
+		font-size: .74rem;
+	}
+	
+	.grid-row div {
+		padding: .5rem .4rem;
 	}
 }
 

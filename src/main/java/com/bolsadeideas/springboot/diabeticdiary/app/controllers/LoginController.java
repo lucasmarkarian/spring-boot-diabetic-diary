@@ -28,6 +28,8 @@ public class LoginController {
 			@RequestParam(value = "logout", required = false) String logout, 
 			Principal principal, Model model, RedirectAttributes flash) {
 		
+		model.addAttribute("counterNumber", this.usuarioService.getAccountsNumber().toString());
+		
 		if (principal != null) {
 			flash.addFlashAttribute("info", principal.getName() + ", ya tienes una sesion iniciada!");
 			return "redirect:/home";
@@ -46,6 +48,8 @@ public class LoginController {
 
 	@GetMapping("/sign-up")
 	public String signUp(Model model) {
+		
+		model.addAttribute("counterNumber", this.usuarioService.getAccountsNumber().toString());
 
 		Usuario usuario = new Usuario();
 
@@ -68,6 +72,8 @@ public class LoginController {
 			System.out.println("ERRORES DEL USERNAME: " + result.getFieldError("username"));
 			return "sign-up";
 		}
+		
+		usuario.setUsername(usuario.getUsername().toLowerCase());
 
 		this.usuarioService.save(usuario);
 		flash.addFlashAttribute("success", "Cuenta creada con exito!");

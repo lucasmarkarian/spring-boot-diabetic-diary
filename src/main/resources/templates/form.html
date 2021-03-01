@@ -7,6 +7,7 @@
 	<header th:replace="layout/layout2 :: header2"></header>
 
 	<section class="banner-area">
+
 		<div class="container-xxl">
 			<div class="card bg-light card-main">
 				<div class="card-header bg-primary font-weight-bold header-table">
@@ -15,7 +16,11 @@
 							class="fas fa-undo-alt"></i></a>
 					</div>
 					<div class="float-end">
-						<span th:text="${actDate}"></span>
+						<div class="form-date">
+							<a th:href="@{'/form/previous/' + ${fullDate}}"><i class="fas fa-caret-left"></i></a>
+							<span th:text="${actDate}"></span>
+							<a th:href="@{'/form/next/' + ${fullDate}}" ><i class="fas fa-caret-right"></i></a>
+						</div>
 					</div>
 				</div>
 				<div class="card-body">

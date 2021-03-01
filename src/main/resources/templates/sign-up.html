@@ -14,51 +14,133 @@
 				<div class="card-body">
 
 					<form th:action="@{/sign-up}" method="post" th:object="${usuario}">
-
-						<div class="input-group mb-3">
-							<label for="nombre" class="col-sm-2 col-form-label">Nombre/s</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{nombre}" class="form-control"
-									th:errorclass="'form-control alert-danger'" autofocus /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+					
+						<div class="input-group-mine">
+							<label for="nombre" class="label-mine">Nombre</label>
+							<div class="input-box">
+								<input type="button" id="expand-toggle-name" />
+								<label for="expand-toggle-name" class="input-info">
+									<small class="information">Ingrese su nombre completo</small>
+									<i class="fas fa-info-circle"></i>
+								</label>
+								<div class="input-mine">
+									<input type="text" th:field="*{nombre}"
+										th:errorclass="'alert-danger'" autofocus /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+								</div>
+							</div>
+						</div>					
+						
+						<div class="input-group-mine">
+							<label for="apellido" class="label-mine">Apellido</label>
+							<div class="input-box">
+								<input type="button" id="expand-toggle-lastname" />
+								<label for="expand-toggle-lastname" class="input-info">
+									<small class="information">Ingrese su apellido completo</small>
+									<i class="fas fa-info-circle"></i>
+								</label>
+								<div class="input-mine">
+									<input type="text" th:field="*{apellido}" class="input-mine"
+										th:errorclass="'alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('apellido')}"
+										th:errors="*{apellido}"></small>
+								</div>
 							</div>
 						</div>
-
-						<div class="input-group mb-3">
-							<label for="apellido" class="col-sm-2 col-form-label">Apellido</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{apellido}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('apellido')}"
-									th:errors="*{apellido}"></small>
-							</div>
-						</div>
-
-						<div class="input-group mb-3">
-							<label for="username" class="col-sm-2 col-form-label">Nombre
+						
+						<div class="input-group-mine">
+							<label for="username" class="label-mine">Nombre
 								de usuario</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{username}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /><small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('username')}"
-									th:errors="*{username}"></small>
+							<div class="input-box">
+								<input type="button" id="expand-toggle-username" />
+								<label for="expand-toggle-username" class="input-info">
+									<small class="information">Ingrese el nombre de usuario que utilizara para iniciar sesion</small>
+									<i class="fas fa-info-circle"></i>
+								</label>
+								<div class="input-mine">
+									<input type="text" th:field="*{username}" class="input-mine"
+										th:errorclass="'alert-danger'" /><small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('username')}"
+										th:errors="*{username}"></small>
+								</div>
 							</div>
 						</div>
+						
+						<div class="input-group-mine">
+							<label for="password" class="label-mine">Contraseña</label>
+							<div class="input-box">
+								<input type="button" id="expand-toggle-password" />
+								<label for="expand-toggle-password" class="input-info">
+									<small class="information">Ingrese la contraseña que utilizara para iniciar sesion.<br/>Al menos 8 caracteres</small>
+									<i class="fas fa-info-circle"></i>
+								</label>
+								<div class="input-mine">
+									<input type="password" th:field="*{password}"
+										class="input-mine"
+										th:errorclass="'alert-danger'" /><small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('password')}"
+										th:errors="*{password}"></small>
+								</div>
+							</div>
+						</div>
+						
+						
+						
+						
+						
 
-						<div class="input-group mb-3">
-							<label for="password" class="col-sm-2">Contraseña</label>
-							<div class="col-sm-6">
-								<input type="password" th:field="*{password}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" /><small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('password')}"
-									th:errors="*{password}"></small>
-							</div>
-						</div>
+<!-- 						<div class="input-group mb-3"> -->
+<!-- 							<label for="nombre" class="col-sm-2 col-form-label">Nombre/s</label> -->
+<!-- 							<div class="col-sm-6"> -->
+<!-- 								<div class="info-signup"></div> -->
+<!-- 								<input type="text" th:field="*{nombre}" class="form-control" -->
+<!-- 									th:errorclass="'form-control alert-danger'" autofocus /> <small -->
+<!-- 									class="form-text text-danger" -->
+<!-- 									th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+
+<!-- 						<div class="input-group mb-3"> -->
+<!-- 							<label for="apellido" class="col-sm-2 col-form-label">Apellido</label> -->
+<!-- 							<div class="col-sm-6"> -->
+<!-- 								<div class="info-signup"></div> -->
+<!-- 								<input type="text" th:field="*{apellido}" class="form-control" -->
+<!-- 									th:errorclass="'form-control alert-danger'" /> <small -->
+<!-- 									class="form-text text-danger" -->
+<!-- 									th:if="${#fields.hasErrors('apellido')}" -->
+<!-- 									th:errors="*{apellido}"></small> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+
+<!-- 						<div class="input-group mb-3"> -->
+<!-- 							<label for="username" class="col-sm-2 col-form-label">Nombre -->
+<!-- 								de usuario</label> -->
+<!-- 							<div class="col-sm-6"> -->
+<!-- 								<div class="info-signup"></div> -->
+<!-- 								<input type="text" th:field="*{username}" class="form-control" -->
+<!-- 									th:errorclass="'form-control alert-danger'" /><small -->
+<!-- 									class="form-text text-danger" -->
+<!-- 									th:if="${#fields.hasErrors('username')}" -->
+<!-- 									th:errors="*{username}"></small> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+
+<!-- 						<div class="input-group mb-3"> -->
+<!-- 							<label for="password" class="col-sm-2">Contraseña</label> -->
+<!-- 							<div class="col-sm-6"> -->
+<!-- 								<div class="info-signup"></div> -->
+<!-- 								<input type="password" th:field="*{password}" -->
+<!-- 									class="form-control" -->
+<!-- 									th:errorclass="'form-control alert-danger'" /><small -->
+<!-- 									class="form-text text-danger" -->
+<!-- 									th:if="${#fields.hasErrors('password')}" -->
+<!-- 									th:errors="*{password}"></small> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 
 						<div class="input-group mb-3">
 							<div class="col-sm-2">

@@ -37,4 +37,9 @@ public class IUsuarioServiceImpl implements IUsuarioService {
 		this.usuarioDao.save(usuario);
 	}
 
+	@Override
+	public Integer getAccountsNumber() {
+		return this.usuarioDao.getAccountsNumber();
+	}
+
 }

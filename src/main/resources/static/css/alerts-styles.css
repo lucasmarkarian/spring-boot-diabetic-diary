@@ -18,7 +18,7 @@
 }
 
 .alert-danger {
-	border-color: hsl(354deg 72% 60%);
+	border-color: hsl(354deg 72% 60%) !important;
 }
 
 .alert-warning {

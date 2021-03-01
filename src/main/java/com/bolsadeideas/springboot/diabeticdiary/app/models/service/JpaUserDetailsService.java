@@ -26,7 +26,7 @@ public class JpaUserDetailsService implements UserDetailsService {
 	@Override
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Usuario usuario = usuarioDao.findByUsername(username);
+		Usuario usuario = usuarioDao.findByUsername(username.toLowerCase());
 		
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		

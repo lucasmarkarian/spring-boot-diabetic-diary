@@ -24,21 +24,30 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.bolsadeideas.springboot.diabeticdiary.app.models.entity.AccountId;
 import com.bolsadeideas.springboot.diabeticdiary.app.models.entity.ControlDiary;
 import com.bolsadeideas.springboot.diabeticdiary.app.models.service.IControlDiaryService;
+import com.bolsadeideas.springboot.diabeticdiary.app.models.service.IUsuarioService;
 
 @Controller
 public class HomeController {
 
 	@Autowired
 	IControlDiaryService controlDiaryService;
+	
+	@Autowired
+	private IUsuarioService usuarioService;
 
 	@GetMapping(value = { "", "/", "/home" })
-	public String home() {
+	public String home(Model model) {
+
+		model.addAttribute("counterNumber", this.usuarioService.getAccountsNumber().toString());
+		
 		return "home2";
 	}
 
 	@GetMapping(value = "/form/{fullDate}")
 	public String showDate(@PathVariable(value = "fullDate") String fullDate, Model model, RedirectAttributes flash)
 			throws ParseException {
+		
+		model.addAttribute("counterNumber", this.usuarioService.getAccountsNumber().toString());
 
 		String dateStr = fullDate;
 
@@ -82,9 +91,12 @@ public class HomeController {
 	}
 
 	@PostMapping(value = "/form")
-	public String guardar(@Valid ControlDiary control, BindingResult result) {
+	public String guardar(@Valid ControlDiary control, BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			String dateStr = simpleDateFormat.format(control.getDate());
+			model.addAttribute("actDate", dateStr);
 			return "form";
 		}
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -115,6 +127,8 @@ public class HomeController {
 	@GetMapping("test/{desde}/{hasta}")
 	public String showControls(@PathVariable(value = "desde") String desde, @PathVariable(value = "hasta") String hasta,
 			Model model, RedirectAttributes flash) throws ParseException {
+		
+		model.addAttribute("counterNumber", this.usuarioService.getAccountsNumber().toString());
 
 		String pattern = "yyyy-MM-dd";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
@@ -169,6 +183,34 @@ public class HomeController {
 
 		return "redirect:/home";
 	}
+	
+	@GetMapping("form/previous/{actDate}")
+	public String anterior(@PathVariable(value = "actDate") String actDate) throws ParseException {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date previousDate = simpleDateFormat.parse(actDate);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(previousDate);
+		calendar.add(Calendar.DATE, -1);
+		previousDate = calendar.getTime();
+		
+		String previousDateStr = simpleDateFormat.format(previousDate);
+		
+		return "redirect:/form/" + previousDateStr;
+	}
+	
+	@GetMapping("form/next/{actDate}")
+	public String siguiente(@PathVariable(value = "actDate") String actDate) throws ParseException {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date nextDate = simpleDateFormat.parse(actDate);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(nextDate);
+		calendar.add(Calendar.DATE, 1);
+		nextDate = calendar.getTime();
+		
+		String nextDateStr = simpleDateFormat.format(nextDate);
+		
+		return "redirect:/form/" + nextDateStr;
+	}
 
 	@GetMapping("/reiniciar/{actDate}")
 	public String reiniciar(@PathVariable(value = "actDate") String actDate) throws ParseException {
@@ -181,7 +223,8 @@ public class HomeController {
 	}
 
 	@GetMapping(value = "/contact")
-	public String contact() {
+	public String contact(Model model) {
+		model.addAttribute("counterNumber", this.usuarioService.getAccountsNumber().toString());
 		return "contact";
 	}
 
