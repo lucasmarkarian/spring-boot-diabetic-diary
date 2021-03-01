@@ -96,7 +96,10 @@ public class HomeController {
 		if (result.hasErrors()) {
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 			String dateStr = simpleDateFormat.format(control.getDate());
+			simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String validDate = simpleDateFormat.format(control.getDate());
 			model.addAttribute("actDate", dateStr);
+			model.addAttribute("origDate", validDate);
 			return "form";
 		}
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

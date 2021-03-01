@@ -8,6 +8,6 @@ public interface IUsuarioService {
 	
 	public void save(Usuario usuario);
 	
-	public Integer getAccountsNumber();
+	public Long getAccountsNumber();
 
 }

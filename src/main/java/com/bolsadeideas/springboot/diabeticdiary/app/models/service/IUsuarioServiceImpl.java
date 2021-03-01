@@ -38,8 +38,8 @@ public class IUsuarioServiceImpl implements IUsuarioService {
 	}
 
 	@Override
-	public Integer getAccountsNumber() {
-		return this.usuarioDao.getAccountsNumber();
+	public Long getAccountsNumber() {
+		return this.usuarioDao.count();
 	}
 
 }
