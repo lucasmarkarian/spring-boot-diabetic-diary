@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout2 :: head2"></head>
+<body>
+
+	<header th:replace="layout/layout2 :: header2"></header>
+	
+	<section class="banner-area">
+
+		<div class="perfil-card">
+			<div id="personal-card">
+				<div class="perfil-header personal-header">
+					<small>Datos personales</small>
+				</div>
+				<div class="perfil-body personal-body">
+					<form th:action="@{/perfil}" method="post" th:object="${usuario}">
+						<div class="content">
+							<label for="nombre">Nombre</label>
+							<input type="text" th:field="*{nombre}" />
+						</div>
+						<div class="content">
+							<label for="apellido">Apellido</label>
+							<input type="text" th:field="*{apellido}" />
+						</div>
+						<div class="content">
+							<button type="submit" id="perfilButton">Guardar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div id="account-card">
+				<div class="perfil-header account-header">
+					<small>Datos de la cuenta</small>
+				</div>
+				<div class="perfil-body account-body"></div>
+			</div>
+		</div>
+		
+	</section>
+	
+	<hr class="division" />
+	
+	<script th:replace="scripts/perfil-js :: javascript"></script>
+	<footer th:replace="layout/layout2 :: footer2"></footer>
+	
+</body>
+</html>

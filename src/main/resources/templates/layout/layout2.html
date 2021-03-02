@@ -23,13 +23,6 @@
 			<input type="checkbox" id="show-nav" />
 			<label for="show-nav" class="label-btn"><br /></label>
 
-<!-- 			<button class="navbar-toggler" type="button" -->
-<!-- 				data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" -->
-<!-- 				aria-controls="navbarNavDropdown" aria-expanded="false" -->
-<!-- 				aria-label="Toggle navigation"> -->
-<!-- 				<span class="navbar-toggler-icon"></span> -->
-<!-- 			</button> -->
-
 			<div class="nav-links">
 				<ul class="ul-links">
 					<li><a class="header-link" th:href="@{/home}">Home</a></li>
@@ -42,7 +35,7 @@
 						<i class="far fa-user-circle"></i>
 					</button>
 					<ul class="dropdown-menu dropdown-menu-dark">
-						<li><a class="dropdown-item" href="#"><i
+						<li><a class="dropdown-item" th:href="@{/perfil}"><i
 								class="far fa-user"></i> Perfil</a></li>
 						<li><hr class="dropdown-divider"></li>
 						<li><form id="logoutForm" th:action="@{/logout}"

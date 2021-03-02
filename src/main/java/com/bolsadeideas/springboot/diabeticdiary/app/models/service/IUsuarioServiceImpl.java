@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bolsadeideas.springboot.diabeticdiary.app.models.dao.IUsuarioDao;
 import com.bolsadeideas.springboot.diabeticdiary.app.models.entity.Role;
@@ -40,6 +41,12 @@ public class IUsuarioServiceImpl implements IUsuarioService {
 	@Override
 	public Long getAccountsNumber() {
 		return this.usuarioDao.count();
+	}
+
+	@Override
+	@Transactional
+	public void update(String name, String lastName, Long id) {
+		this.usuarioDao.update(name, lastName, id);
 	}
 
 }

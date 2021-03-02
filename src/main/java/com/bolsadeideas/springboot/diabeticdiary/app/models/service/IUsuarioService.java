@@ -8,6 +8,8 @@ public interface IUsuarioService {
 	
 	public void save(Usuario usuario);
 	
+	public void update(String name, String lastName, Long id);
+	
 	public Long getAccountsNumber();
 
 }

@@ -23,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bolsadeideas.springboot.diabeticdiary.app.models.entity.AccountId;
 import com.bolsadeideas.springboot.diabeticdiary.app.models.entity.ControlDiary;
+import com.bolsadeideas.springboot.diabeticdiary.app.models.entity.Usuario;
 import com.bolsadeideas.springboot.diabeticdiary.app.models.service.IControlDiaryService;
 import com.bolsadeideas.springboot.diabeticdiary.app.models.service.IUsuarioService;
 
@@ -229,6 +230,24 @@ public class HomeController {
 	public String contact(Model model) {
 		model.addAttribute("counterNumber", this.usuarioService.getAccountsNumber().toString());
 		return "contact";
+	}
+	
+	@GetMapping(value = "/perfil")
+	public String perfil(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Usuario usuario = this.usuarioService.findByUsername(auth.getName());
+		model.addAttribute("counterNumber", this.usuarioService.getAccountsNumber().toString());
+		model.addAttribute("usuario", usuario);
+		return "perfil";
+	}
+	
+	@PostMapping(value = "/perfil")
+	public String guardarPerfil(Usuario editedUser) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Usuario usuario = this.usuarioService.findByUsername(auth.getName());
+		System.out.println(usuario.getPassword());
+		this.usuarioService.update(editedUser.getNombre(), editedUser.getApellido(), usuario.getId());;
+		return "redirect:/home";
 	}
 
 }

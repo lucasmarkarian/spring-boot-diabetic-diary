@@ -94,6 +94,10 @@
 	transform: translate(0, -1.8rem);
 }
 
+.grid-contact .container-contact:hover>.container-info {
+	box-shadow: 0 0 5px #0d6dfd, 0 0 5px #0d6dfd;
+}
+
 .grid-contact .container-contact:hover>.cuenta {
 	transform: translateY(4.3rem);
 }

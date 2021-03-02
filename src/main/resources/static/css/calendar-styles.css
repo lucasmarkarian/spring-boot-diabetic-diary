@@ -138,7 +138,7 @@
 @media screen and (max-width: 594px) {
 	.calendar,
 	.date-range-menu {
-		width: 90%;
+		width: 100%;
 	}
 	
 	.days a {
@@ -158,6 +158,5 @@
 @media screen and (max-width: 350px) {
 	.calendar {
 		height: calc(12rem + 95vw);
-		width: 100%;
 	}
 }

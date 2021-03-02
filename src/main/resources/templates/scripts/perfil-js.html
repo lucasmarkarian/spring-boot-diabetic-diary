@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+	<script type="text/javascript" th:fragment="javascript">
+		const nombre = document.getElementById("nombre").value;
+		const apellido = document.getElementById("apellido").value;
+		const button = document.getElementById("perfilButton");
+	
+		const onChangeInputs = () => {
+			let nombreBoolean = document.getElementById("nombre").value == nombre;
+			let apellidoBoolean = document.getElementById("apellido").value == apellido;
+			
+			if (nombreBoolean == true && apellidoBoolean == true) {
+				button.disabled = true;
+			} else {
+				button.disabled = false;
+			}
+		}
+		
+		document.getElementById("nombre").addEventListener('input', () => {
+			onChangeInputs();
+		})
+		
+		document.getElementById("apellido").addEventListener('input', () => {
+			onChangeInputs();
+		})
+		
+		onChangeInputs();
+	</script>
+
+</body>
+</html>
