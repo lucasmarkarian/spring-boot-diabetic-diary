@@ -11,11 +11,8 @@
 			let nombreBoolean = document.getElementById("nombre").value == nombre;
 			let apellidoBoolean = document.getElementById("apellido").value == apellido;
 			
-			if (nombreBoolean == true && apellidoBoolean == true) {
-				button.disabled = true;
-			} else {
-				button.disabled = false;
-			}
+			(nombreBoolean && apellidoBoolean ) ? button.disabled = true : button.disabled = false;
+			
 		}
 		
 		document.getElementById("nombre").addEventListener('input', () => {

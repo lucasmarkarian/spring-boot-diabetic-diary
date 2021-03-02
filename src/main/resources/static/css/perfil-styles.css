@@ -11,9 +11,9 @@
 	height: 15rem;
 	background-color: #fff;
 	z-index: 1;
-	border: 1px solid #0d6dfd;
-	box-shadow: 0 0 5px rgba(0,0,0,.8),
-				0 0 5px rgba(0,0,0,.8);
+	box-shadow: 0px 0px 0px 1px #0d6dfd,
+				0 0 5px rgb(0 0 0 / 80%),
+				0 0 5px rgb(0 0 0 / 80%);
 }
 
 #account-card {
@@ -23,7 +23,7 @@
 	align-self: flex-end;
 	position: relative;
 	right: 3rem;
-	border: 1px solid hsl(216deg 98% 39%);
+	box-shadow: 0 0 0 1px hsl(216deg 98% 39%);
 }
 
 #personal-card,
@@ -38,6 +38,7 @@
 	color: white;
 	font-size: 1.5rem;
 	height: 20%;
+	border-radius: .3rem .3rem 0 0;
 }
 
 .personal-header {
@@ -59,7 +60,7 @@
 	justify-content: space-evenly;
 }
 
-.perfil-body form .content {
+.content {
 	padding: .4rem .7rem;
 }
 
@@ -67,11 +68,13 @@
 	padding: .5rem .7rem;
 }
 
-.content label {
+.content label,
+.content-account span {
 	font-weight: 600;
 }
 
-.content input {
+.content input,
+.content-account div {
 	margin-left: .5rem;
     width: 80%;
     padding: .3rem .5rem;
@@ -83,12 +86,47 @@
     border: 1px solid #d4d4d4;
 }
 
+.content input:focus {
+	border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+}
+
 .content button:not(:disabled) {
 	background-color: #0d6dfd;
 	color: white;
 }
 
-@media screen and (max-width: 863px) {
+.account-body {
+	display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.content-account {
+	display: flex;
+	align-items: center;
+}
+
+.content a {
+	padding: .3rem .5rem;
+    border-radius: .4rem;
+    border: 1px solid rgba(0,0,0,.5);
+    background-color: hsl(0deg 62% 55%);
+    text-decoration: none;
+    color: hsl(0deg 0% 16%);
+    font-weight: 500;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+}
+
+.content-account div {
+	width: 80%;
+	border: 1px solid rgba(0,0,0,.4);
+	border-radius: .4rem;
+}
+
+@media screen and (max-width: 880px) {
 	#account-card {
 		right: 0;
 	}
@@ -99,8 +137,9 @@
 	}
 }
 
-@media screen and (max-width: 414px) {
-	.content {
+@media screen and (max-width: 431px) {
+	.content,
+	.content-account {
 		display: flex;
     	flex-direction: column;
     	align-items: center;

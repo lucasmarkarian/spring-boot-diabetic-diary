@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/layout2 :: head2"></head>
 <body>
 
@@ -32,7 +33,15 @@
 				<div class="perfil-header account-header">
 					<small>Datos de la cuenta</small>
 				</div>
-				<div class="perfil-body account-body"></div>
+				<div class="perfil-body account-body">
+					<div class="content content-account">
+						<span>Username</span> 
+						<div sec:authentication="name"></div>
+					</div>
+					<div class="content" style="text-align: center;">
+						<a href="#">Cambiar contraseña</a>
+					</div>
+				</div>
 			</div>
 		</div>
 		

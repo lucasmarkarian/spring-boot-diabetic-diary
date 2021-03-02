@@ -245,9 +245,8 @@ public class HomeController {
 	public String guardarPerfil(Usuario editedUser) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Usuario usuario = this.usuarioService.findByUsername(auth.getName());
-		System.out.println(usuario.getPassword());
 		this.usuarioService.update(editedUser.getNombre(), editedUser.getApellido(), usuario.getId());;
-		return "redirect:/home";
+		return "redirect:/perfil";
 	}
 
 }
