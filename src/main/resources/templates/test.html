@@ -14,7 +14,7 @@
 					<h4 class="card-title">
 						<a th:href="@{'/home'}">&laquo; Volver</a> <a
 							class="btn btn-danger btn-xs float-end mx-2"
-							th:href="@{'/test/' + ${desde} + '/' + ${hasta}(format=pdf)}"
+							th:href="@{'/test/' + ${desde} + '/' + ${hasta}(format=pdf,empty=${empty})}"
 							target="_blank" rel="noopener noreferrer">PDF</a>
 					</h4>
 				</div>

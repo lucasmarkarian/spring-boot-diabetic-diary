@@ -27,7 +27,6 @@ public class PDFBuilder extends AbstractPdfView {
 	@Override
 	protected void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter writer,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		String desde = (String) model.get("desde");
 		String hasta = (String) model.get("hasta");
 		

@@ -1,6 +1,7 @@
+body.js-stop-transition * { transition: none !important; }
+
 .perfil-card {
 	width: 100%;
-	height: 25rem;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -8,22 +9,22 @@
 
 #personal-card {
 	width: 25rem;
-	height: 15rem;
 	background-color: #fff;
 	z-index: 1;
 	box-shadow: 0px 0px 0px 1px #0d6dfd,
 				0 0 5px rgb(0 0 0 / 80%),
 				0 0 5px rgb(0 0 0 / 80%);
+	align-self: self-start;
 }
 
 #account-card {
 	width: 25rem;
-	height: 12rem;
-	background-color: hsl(0deg 0% 83%);
-	align-self: flex-end;
+	background-color: hsl(0deg 0% 88%);
+	align-self: flex-start;
 	position: relative;
-	right: 3rem;
+	right: .3rem;
 	box-shadow: 0 0 0 1px hsl(216deg 98% 39%);
+	margin-top: 2rem;
 }
 
 #personal-card,
@@ -37,7 +38,7 @@
 	align-items: center;
 	color: white;
 	font-size: 1.5rem;
-	height: 20%;
+	height: 2.5rem;
 	border-radius: .3rem .3rem 0 0;
 }
 
@@ -49,18 +50,15 @@
 	background-color: hsl(216deg 98% 39%);
 }
 
-.perfil-body {
-	height: 80%;
-}
 
 .perfil-body form {
-	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
 }
 
 .content {
+	margin: .4rem 0;
 	padding: .4rem .7rem;
 }
 
@@ -83,7 +81,7 @@
 .content button,
 .content input {
 	border-radius: .4rem;
-    border: 1px solid #d4d4d4;
+    border: 1px solid #a9a9a9;
 }
 
 .content input:focus {
@@ -108,7 +106,8 @@
 	align-items: center;
 }
 
-.content a {
+.content .small-btn {
+	display: inline-block;
 	padding: .3rem .5rem;
     border-radius: .4rem;
     border: 1px solid rgba(0,0,0,.5);
@@ -118,6 +117,7 @@
     font-weight: 500;
     letter-spacing: 1px;
     word-spacing: 2px;
+    font-size: 1rem;
 }
 
 .content-account div {
@@ -126,15 +126,57 @@
 	border-radius: .4rem;
 }
 
-@media screen and (max-width: 880px) {
-	#account-card {
-		right: 0;
-	}
-	
-	.perfil-card {
-		height: 30rem;
-		align-content: space-evenly;
-	}
+.content-change {
+	text-align: center;
+	cursor: pointer;
+}
+
+#change-form {
+    transition: all .4s linear;
+    height: 0;
+}
+
+#expand-toggle-changepw:checked ~ #change-form {
+	height: 25rem;
+}
+
+#expand-toggle-changepw:not(:checked) ~ #change-form .content {
+	transition: transform .1s linear;
+	transform: scaleY(0);
+}
+
+
+#expand-toggle-changepw:checked ~ #change-form .content {
+	transition: all .3s linear .3s;
+	transform: scaleY(1);
+}
+
+#change-form .content label {
+	text-align: center;
+}
+
+#change-form .content input {
+	color: black;
+	width: 100%;
+	margin: 0;
+}
+
+#change-form::before {
+	content: '';
+	height: 2px;
+	width: 90%;
+	margin: 0 auto;
+	background: rgba(0,0,0,.3);
+	display: block;
+}
+
+.flex-s {
+	align-self: flex-start;
+}
+
+.content .text-danger {
+	display: block;
+	text-align: center;
 }
 
 @media screen and (max-width: 431px) {
@@ -143,5 +185,17 @@
 		display: flex;
     	flex-direction: column;
     	align-items: center;
+	}
+}
+
+@media screen and (max-width: 317px) {
+	#expand-toggle-changepw:checked ~ #change-form {
+		height: 28rem;
+	}
+}
+
+@media screen and (max-width: 288px) {
+	#expand-toggle-changepw:checked ~ #change-form {
+		height: 35rem;
 	}
 }

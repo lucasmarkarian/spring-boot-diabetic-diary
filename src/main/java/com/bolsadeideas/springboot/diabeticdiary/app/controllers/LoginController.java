@@ -1,6 +1,8 @@
 package com.bolsadeideas.springboot.diabeticdiary.app.controllers;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bolsadeideas.springboot.diabeticdiary.app.models.entity.Role;
 import com.bolsadeideas.springboot.diabeticdiary.app.models.entity.Usuario;
 import com.bolsadeideas.springboot.diabeticdiary.app.models.service.IUsuarioService;
 
@@ -62,19 +65,20 @@ public class LoginController {
 	public String signUp(@Valid Usuario usuario, BindingResult result,
 			RedirectAttributes flash) {
 
+		usuario.setUsername(usuario.getUsername().toLowerCase());
+		
 		if (this.usuarioService.findByUsername(usuario.getUsername()) != null) {
-			System.out.println("EL NOMBRE DE USUARIO YA EXISTE");
 			result.addError(new FieldError("username", "username", "El nombre de usuario '" + usuario.getUsername() + "' ya se encuentra en uso !"));
 			return "sign-up";
 		}
 
 		if (result.hasErrors()) {
-			System.out.println("ERRORES DEL USERNAME: " + result.getFieldError("username"));
 			return "sign-up";
 		}
 		
-		usuario.setUsername(usuario.getUsername().toLowerCase());
-
+		List<Role> roles = new ArrayList<Role>();
+		roles.add(new Role("ROLE_USER"));
+		usuario.setRoles(roles);
 		this.usuarioService.save(usuario);
 		flash.addFlashAttribute("success", "Cuenta creada con exito!");
 		return "redirect:/login";

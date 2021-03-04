@@ -90,6 +90,10 @@ body {
 	box-shadow: 14px 5px 2px rgba(0, 0, 0, .5);
 }
 
+.header-link:active {
+	font-weight: 100;
+}
+
 .header-link:hover, .nav-links .btn-group .btn:hover {
 	color: hsla(199, 100%, 73%, 1);
 	text-shadow: 14px 8px 2px rgba(0, 0, 0, .5);

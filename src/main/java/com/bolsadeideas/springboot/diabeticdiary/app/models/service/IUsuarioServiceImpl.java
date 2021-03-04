@@ -31,9 +31,6 @@ public class IUsuarioServiceImpl implements IUsuarioService {
 		String encryptedPassword = this.passwordEncoder.encode(usuario.getPassword());
 		usuario.setPassword(encryptedPassword);
 		usuario.setEnabled(true);
-		List<Role> roles = new ArrayList<Role>();
-		roles.add(new Role("ROLE_USER"));
-		usuario.setRoles(roles);
 		
 		this.usuarioDao.save(usuario);
 	}

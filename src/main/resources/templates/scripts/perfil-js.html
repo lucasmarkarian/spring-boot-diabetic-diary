@@ -2,28 +2,58 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 
-	<script type="text/javascript" th:fragment="javascript">
+	<script type="text/javascript" th:fragment="personalButtonJs">
 		const nombre = document.getElementById("nombre").value;
 		const apellido = document.getElementById("apellido").value;
-		const button = document.getElementById("perfilButton");
+		const personalButton = document.getElementById("perfilPersonalButton");
 	
-		const onChangeInputs = () => {
+		const onChangeInputsPersonal = () => {
 			let nombreBoolean = document.getElementById("nombre").value == nombre;
 			let apellidoBoolean = document.getElementById("apellido").value == apellido;
 			
-			(nombreBoolean && apellidoBoolean ) ? button.disabled = true : button.disabled = false;
+			(nombreBoolean && apellidoBoolean ) ? personalButton.disabled = true : personalButton.disabled = false;
 			
 		}
 		
 		document.getElementById("nombre").addEventListener('input', () => {
-			onChangeInputs();
+			onChangeInputsPersonal();
 		})
 		
 		document.getElementById("apellido").addEventListener('input', () => {
-			onChangeInputs();
+			onChangeInputsPersonal();
 		})
 		
-		onChangeInputs();
+		onChangeInputsPersonal();
+	</script>
+	
+	<script type="text/javascript" th:fragment="accountButtonJs">
+	
+		const accountButton = document.getElementById("perfilAccountButton");
+		const onChangeInputsAccount = () => {
+			
+			let oldPw = document.getElementById("oldPassword").value;
+			let newPw = document.getElementById("newPassword").value;
+			let newPwRep = document.getElementById("repeatedNewPassword").value;
+			
+			(oldPw.length > 0 && newPw.length >= 8 && newPwRep.length >= 8) 
+				? accountButton.disabled = false : accountButton.disabled = true;
+			
+		}
+		
+		document.getElementById("oldPassword").addEventListener('input', () => {
+			onChangeInputsAccount();
+		})
+		
+		document.getElementById("newPassword").addEventListener('input', () => {
+			onChangeInputsAccount();
+		})
+		
+		document.getElementById("repeatedNewPassword").addEventListener('input', () => {
+			onChangeInputsAccount();
+		})
+		
+		onChangeInputsAccount();
+		
 	</script>
 
 </body>

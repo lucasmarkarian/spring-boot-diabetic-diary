@@ -32,19 +32,37 @@
 			</a>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
 				style="color: #007bff;">
-				<form th:action="@{/test}" method="post" class="px-4">
+				<form th:action="@{''}" id="form-range" method="post" class="px-4">
 					<label th:text="'Desde'"></label> <input type="date" name="desde"
 						id="desde" required />
 					<div class="dropdown-divider" style="border: .5px solid #007bff"></div>
 					<label th:text="'Hasta'"></label> <input type="date" name="hasta"
 						id="hasta" required />
-					<div class="pt-3">
-						<input type="submit" th:value="'Generar'" class="btn btn-primary" />
+					<div class="btn-group-range">
+						<div class="pt-3"> 
+							<input type="submit" th:value="'Generar'" id="btn-full" class="btn btn-success" />
+						</div>
+						<div class="pt-3"> 
+							<input type="submit" th:value="'Generar vacio'" id="btn-empty" class="btn btn-success" />
+						</div>
 					</div>
 				</form>
 			</div>
 		</div>
 	</section>
+	
+	<script type="text/javascript">
+		const form = document.getElementById("form-range");
+		const url = "http://localhost:8080/test?empty=";
+		
+		document.getElementById("btn-full").addEventListener('click', () => {
+			form.action = url + 'false';
+		})
+		
+		document.getElementById("btn-empty").addEventListener('click', () => {
+			form.action = url + 'true';
+		})
+	</script>	
 	
 	<hr class="division" />
 

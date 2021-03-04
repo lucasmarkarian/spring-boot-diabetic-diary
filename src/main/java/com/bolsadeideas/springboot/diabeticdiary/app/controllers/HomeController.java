@@ -1,7 +1,9 @@
 package com.bolsadeideas.springboot.diabeticdiary.app.controllers;
 
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -12,9 +14,11 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,12 +27,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bolsadeideas.springboot.diabeticdiary.app.models.entity.AccountId;
 import com.bolsadeideas.springboot.diabeticdiary.app.models.entity.ControlDiary;
+import com.bolsadeideas.springboot.diabeticdiary.app.models.entity.PasswordChange;
 import com.bolsadeideas.springboot.diabeticdiary.app.models.entity.Usuario;
 import com.bolsadeideas.springboot.diabeticdiary.app.models.service.IControlDiaryService;
 import com.bolsadeideas.springboot.diabeticdiary.app.models.service.IUsuarioService;
 
 @Controller
 public class HomeController {
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@Autowired
 	IControlDiaryService controlDiaryService;
@@ -82,7 +90,6 @@ public class HomeController {
 			model.addAttribute("controlDiary", controlDiary);
 			model.addAttribute("actDate", dateStr);
 			model.addAttribute("origDate", fullDate);
-			System.out.println(date);
 			return "form";
 		} else {
 			flash.addFlashAttribute("error", "Fecha INVALIDA, superior a la fecha actual!");
@@ -123,17 +130,26 @@ public class HomeController {
 
 	@PostMapping(value = "/test")
 	public String redirectControls(@RequestParam("desde") String desde, @RequestParam("hasta") String hasta,
-			Model model) throws ParseException {
-
-		return "redirect:test/".concat(desde).concat("/").concat(hasta);
+			@RequestParam(value = "empty") Boolean empty, 
+			RedirectAttributes flash) throws ParseException {
+		
+		String redirect = "redirect:test/".concat(desde).concat("/").concat(hasta).concat("?empty=");
+		
+		if (empty) {
+			redirect = redirect.concat("true");
+		} else {
+			redirect = redirect.concat("false");
+		}
+		return redirect;
 	}
 
 	@GetMapping("test/{desde}/{hasta}")
 	public String showControls(@PathVariable(value = "desde") String desde, @PathVariable(value = "hasta") String hasta,
+			@RequestParam(value = "format", required = false) String format, @RequestParam(value = "empty") Boolean empty, 
 			Model model, RedirectAttributes flash) throws ParseException {
 		
 		model.addAttribute("counterNumber", this.usuarioService.getAccountsNumber().toString());
-
+		
 		String pattern = "yyyy-MM-dd";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
@@ -147,7 +163,6 @@ public class HomeController {
 			if (desdeFormated.compareTo(actualDate) <= 0 && hastaFormated.compareTo(actualDate) <= 0) {
 				int compareDate = hastaFormated.compareTo(desdeFormated);
 				if (compareDate >= 0) {
-					System.out.println("EL RANGO ES VALIDO!");
 
 					long diffInMillies = Math.abs(hastaFormated.getTime() - desdeFormated.getTime());
 					long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
@@ -155,14 +170,29 @@ public class HomeController {
 						simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 						String desdeTitulo = simpleDateFormat.format(desdeFormated);
 						String hastaTitulo = simpleDateFormat.format(hastaFormated);
-
-						Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-						List<ControlDiary> controles = this.controlDiaryService
-								.findByUsernameBetweenDates(auth.getName(), desdeFormated, hastaFormated);
-						if (controles.isEmpty()) {
-							flash.addFlashAttribute("warning", "Lo sentimos, no hay controles para las fechas dadas!");
-							return "redirect:/home";
+						List<ControlDiary> controles = new ArrayList<ControlDiary>();
+						
+						if (empty) {
+							Calendar calendar = Calendar.getInstance();
+							calendar.setTime(desdeFormated);
+							ControlDiary control = null;
+							for (int i = 0; i <= diff; i++) {
+								control = new ControlDiary();
+								control.setDate(desdeFormated);
+								controles.add(control);
+								calendar.add(Calendar.DATE, 1);
+								desdeFormated = calendar.getTime();
+							}
+						} else {
+							Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+							controles = this.controlDiaryService
+									.findByUsernameBetweenDates(auth.getName(), desdeFormated, hastaFormated);
+							if (controles.isEmpty()) {
+								flash.addFlashAttribute("warning", "Lo sentimos, no hay controles para las fechas dadas!");
+								return "redirect:/home";
+							}
 						}
+						model.addAttribute("empty", empty);
 						model.addAttribute("desdeTitulo", desdeTitulo);
 						model.addAttribute("hastaTitulo", hastaTitulo);
 						model.addAttribute("desde", desde);
@@ -170,12 +200,10 @@ public class HomeController {
 						model.addAttribute("controles", controles);
 						return "test";
 					} else {
-						System.out.println("LA CANTIDAD DE DIAS NO ES VALIDA!");
 						flash.addFlashAttribute("error",
 								"Rango INVALIDO, la cantidad maxima de dias permitidos es 31 !");
 					}
 				} else {
-					System.out.println("EL RANGO NO ES VALIDO!");
 					flash.addFlashAttribute("error", "Rango INVALIDO, fecha 'desde' superior a fecha 'hasta' !");
 				}
 			} else {
@@ -236,16 +264,54 @@ public class HomeController {
 	public String perfil(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Usuario usuario = this.usuarioService.findByUsername(auth.getName());
+		PasswordChange passwordChange = new PasswordChange();
 		model.addAttribute("counterNumber", this.usuarioService.getAccountsNumber().toString());
+		model.addAttribute("passwordChange", passwordChange);
 		model.addAttribute("usuario", usuario);
 		return "perfil";
 	}
 	
 	@PostMapping(value = "/perfil")
-	public String guardarPerfil(Usuario editedUser) {
+	public String guardarPerfil(Usuario editedUser, RedirectAttributes flash) {
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Usuario usuario = this.usuarioService.findByUsername(auth.getName());
-		this.usuarioService.update(editedUser.getNombre(), editedUser.getApellido(), usuario.getId());;
+		this.usuarioService.update(editedUser.getNombre(), editedUser.getApellido(), usuario.getId());
+		flash.addFlashAttribute("success", "Datos guardados con exito!");
+		return "redirect:/perfil";
+	}
+	
+	@PostMapping(value = "/change-password")
+	public String change_password(@Valid PasswordChange passwordChange, BindingResult result, 
+			Model model, RedirectAttributes flash) {
+		model.addAttribute("counterNumber", this.usuarioService.getAccountsNumber().toString());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Usuario user = this.usuarioService.findByUsername(auth.getName());
+		model.addAttribute("usuario", user);
+		
+		if (!this.passwordEncoder.matches(passwordChange.getOldPassword(), user.getPassword())) {
+			result.addError(new FieldError("oldPassword", "oldPassword", "Contraseña incorrecta!"));
+			return "perfil";
+		}
+		
+		if (!passwordChange.getNewPassword().equals(passwordChange.getRepeatedNewPassword())) {
+			result.addError(new FieldError("newPassword", "newPassword", "Las contraseñas no coinciden!"));
+			result.addError(new FieldError("repeatedNewPassword", "repeatedNewPassword", "Las contraseñas no coinciden!"));
+			return "perfil";
+		}
+		
+		if (passwordChange.getOldPassword().equals(passwordChange.getNewPassword())) {
+			result.addError(new FieldError("newPassword", "newPassword", "Debe ser diferente a la contraseña actual!"));
+			return "perfil";
+		}
+		
+		if (result.hasErrors()) {
+			return "perfil";
+		}
+		
+		user.setPassword(passwordChange.getNewPassword());
+		this.usuarioService.save(user);
+		flash.addFlashAttribute("success", "Contraseña modificada con exito!");
 		return "redirect:/perfil";
 	}
 

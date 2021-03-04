@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/layout2 :: head2"></head>
-<body>
+<body class="js-stop-transition">
 
 	<header th:replace="layout/layout2 :: header2"></header>
 	
@@ -23,8 +23,8 @@
 							<label for="apellido">Apellido</label>
 							<input type="text" th:field="*{apellido}" />
 						</div>
-						<div class="content">
-							<button type="submit" id="perfilButton">Guardar</button>
+						<div class="content flex-s">
+							<button type="submit" id="perfilPersonalButton">Guardar</button>
 						</div>
 					</form>
 				</div>
@@ -38,9 +38,34 @@
 						<span>Username</span> 
 						<div sec:authentication="name"></div>
 					</div>
-					<div class="content" style="text-align: center;">
-						<a href="#">Cambiar contraseña</a>
-					</div>
+					<input type="checkbox" id="expand-toggle-changepw" style="display: none;" />
+					<label for="expand-toggle-changepw" class="content content-change">
+						<small class="small-btn">Cambiar contraseña</small>
+					</label>
+					<form th:action="@{/change-password}" method="post" id="change-form"
+						th:object="${passwordChange}">
+						<div class="content">
+							<label for="oldPassword">Ingrese la contraseña actual</label>
+							<input type="password" th:field="*{oldPassword}" th:errorclass="'alert-danger'" />
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('oldPassword')}"
+								th:errors="*{oldPassword}"></small>
+						</div>
+						<div class="content">
+							<label for="newPassword">Ingrese la nueva contraseña</label>
+							<input type="password" th:field="*{newPassword}" th:errorclass="'alert-danger'"  />
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('newPassword')}"
+								th:errors="*{newPassword}"></small>
+						</div>
+						<div class="content">
+							<label for="repeatedNewPassword">Repita la nueva contraseña</label>
+							<input type="password" th:field="*{repeatedNewPassword}" th:errorclass="'alert-danger'" />
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('repeatedNewPassword')}"
+								th:errors="*{repeatedNewPassword}"></small>
+						</div>
+						<div class="content flex-s">
+							<button type="submit" id="perfilAccountButton">Guardar</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -49,7 +74,18 @@
 	
 	<hr class="division" />
 	
-	<script th:replace="scripts/perfil-js :: javascript"></script>
+	<script th:replace="scripts/perfil-js :: personalButtonJs"></script>
+	<script th:replace="scripts/perfil-js :: accountButtonJs"></script>
+	<script type="text/javascript">
+ 		document.body.classList.remove('js-stop-transition');
+ 		
+ 		const toggle = document.getElementById("expand-toggle-changepw");
+ 		
+ 		if(document.getElementsByClassName("text-danger").length > 0) {
+ 			toggle.click();
+ 		}
+ 		
+	</script>
 	<footer th:replace="layout/layout2 :: footer2"></footer>
 	
 </body>
