@@ -129,6 +129,9 @@ body.js-stop-transition * { transition: none !important; }
 .content-change {
 	text-align: center;
 	cursor: pointer;
+	align-self: center;
+	padding: 0;
+	margin-bottom: .7rem;
 }
 
 #change-form {
